@@ -56,8 +56,11 @@ namespace MedHelper.Web
 					RequireUppercase = true,
 					RequireNonAlphanumeric = true
 				};
-				//TODO : Turn this back on for production
+#if DEBUG
 				o.SignIn.RequireConfirmedEmail = false;
+#else
+				o.SignIn.RequireConfirmedEmail = true;
+#endif
 			});
 			services.Configure<RouteOptions>(o => o.LowercaseUrls = true);
 			RegisterGlobalServices(services);
