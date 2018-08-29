@@ -21,11 +21,8 @@ namespace MedHelper.Services.Doctor
 		}
 
 		public IEnumerable<DoctorExamConciseViewModel> All(string id)
-		{
-			var collection = new List<DoctorExamConciseViewModel>();
-			DbContext.Exams.Include(e => e.Status).Include(e => e.Facility).Where(e => e.PatientId == id).ToList().ForEach(e => collection.Add(Mapper.Map<DoctorExamConciseViewModel>(e)));
-			return collection;
-		}
+			=> Mapper.Map<IEnumerable<DoctorExamConciseViewModel>>(DbContext.Exams.Include(e => e.Status).Include(e => e.Facility)
+			.Where(e => e.PatientId == id));
 
 		public PatientExamDetailsViewModel Details(string id) => Mapper.Map<PatientExamDetailsViewModel>(DbContext.Exams
 			.Include(v => v.Status)
