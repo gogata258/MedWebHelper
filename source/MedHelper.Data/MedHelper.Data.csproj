@@ -1,19 +1,31 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp2.1</TargetFramework>
+		<LangVersion>7.3</LangVersion>
+		<Authors>George Anastasov</Authors>
+		<Product>MedHelper</Product>
+		<PackageLicenseUrl>https://www.gnu.org/licenses/gpl-3.0-standalone.html</PackageLicenseUrl>
+		<RepositoryUrl>https://github.com/gogata258/MedWebHelper</RepositoryUrl>
+		<FileVersion>0.0.0.0</FileVersion>
+		<AssemblyVersion>1.0.0.*</AssemblyVersion>
+		<Deterministic>False</Deterministic>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MedHelper.Data.Model\MedHelper.Data.Models.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.2">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\MedHelper.Data.Model\MedHelper.Data.Models.csproj" />
+	</ItemGroup>
 
 </Project>

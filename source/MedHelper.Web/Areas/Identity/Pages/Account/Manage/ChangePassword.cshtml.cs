@@ -30,7 +30,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 			User user = await userService.UserManager.GetUserAsync(User);
 			return user is null
 				? NotFound(Messages.NOTFOUND_USER_ID(userService.UserManager.GetUserId(User)))
-				: await userService.UserManager.HasPasswordAsync(user) ? RedirectToPage("./SetPassword") : (IActionResult)Page();
+				: await userService.UserManager.HasPasswordAsync(user) ? (IActionResult)Page() : RedirectToPage("./SetPassword");
 		}
 
 		public async Task<IActionResult> OnPostAsync()

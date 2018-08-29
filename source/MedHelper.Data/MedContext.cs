@@ -4,9 +4,16 @@ namespace MedHelper.Data
 {
 	using Common.Constants;
 	using Models;
+
 	public class MedContext : IdentityDbContext<User>
 	{
+#if DEBUG
+		private const string CONNECTION_STRING = "Server=tcp:envelopeddevil.database.windows.net,1433;Initial Catalog=MedHelperDb_Debug;Persist Security Info=False;User ID=TestUser2;Password=Password_Test123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+#else
 		private const string CONNECTION_STRING = "Server=tcp:envelopeddevil.database.windows.net,1433;Initial Catalog=MedHelperDb;Persist Security Info=False;User ID=TestUser2;Password=Password_Test123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+#endif
+
+
 		public DbSet<Facility> Facilities { get; set; }
 		public DbSet<Qualification> Qualification { get; set; }
 		public DbSet<Exam> Exams { get; set; }
@@ -18,13 +25,14 @@ namespace MedHelper.Data
 		public MedContext(DbContextOptions<MedContext> options) : base(options)
 		{
 		}
-		public MedContext() : base()
-		{
-		}
 		protected override void OnConfiguring(DbContextOptionsBuilder options)
 		{
 			if (!options.IsConfigured) options.UseSqlServer(CONNECTION_STRING);
 			base.OnConfiguring(options);
+		}
+		public MedContext() : base(new DbContextOptionsBuilder().UseSqlServer(CONNECTION_STRING).Options)
+		{
+
 		}
 		protected override void OnModelCreating(ModelBuilder model)
 		{
