@@ -6,7 +6,7 @@ namespace MedHelper.Data
 	using Models;
 	public class MedContext : IdentityDbContext<User>
 	{
-		private const string CONNECTION_STRING = "Server=tcp:envelopeddevil.database.windows.net,1433;Initial Catalog=MedHelper;Persist Security Info=False;User ID=TestUser2;Password=Password_Test123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+		private const string CONNECTION_STRING = "Server=tcp:envelopeddevil.database.windows.net,1433;Initial Catalog=MedHelperDb;Persist Security Info=False;User ID=TestUser2;Password=Password_Test123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 		public DbSet<Facility> Facilities { get; set; }
 		public DbSet<Qualification> Qualification { get; set; }
 		public DbSet<Exam> Exams { get; set; }
