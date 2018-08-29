@@ -1,0 +1,10 @@
+﻿@model FacilityConciseViewModel
+<tr>
+	<td>@Model.Name</td>
+	<td>@Model.Personnel</td>
+	<td>
+		<tag_a class="btn btn-info" asp-area="@Roles.ADMIN" asp-controller="@Controllers.FACILITIES" asp-action="AddPersonnel" asp-route-id="@Model.Id">Add</tag_a>
+		<tag_a class="btn btn-outline-info" asp-area="@Roles.ADMIN" asp-controller="@Controllers.FACILITIES" asp-action="Personnel" asp-route-id="@Model.Id">Personnel</tag_a>
+		<tag_a class="btn btn-danger" asp-area="@Roles.ADMIN" asp-controller="@Controllers.FACILITIES" asp-action="Delete" asp-route-id="@Model.Id">Delete</tag_a>
+	</td>
+</tr>

@@ -1,0 +1,16 @@
+﻿@model QualificationCreateBindingModel
+@{
+	ViewData["Title"] = "Create Facility";
+}
+<h2>@ViewData["Title"]</h2>
+<tag_partial name="_StatusMessage" model="@ViewData["Error"]" />
+<form method="post">
+	<div class="form-group">
+		<tag_label asp-for="Name"></tag_label>
+		<tag_input class="form-control" asp-for="Name" />
+		<tag_span class="text-danger" asp-validation-for="Name"></tag_span>
+	</div>
+	<input class="btn btn-success offset-11" type="submit" value="Add" />
+</form>
+
+<tag_partial name="_ValidationScriptsPartial" />

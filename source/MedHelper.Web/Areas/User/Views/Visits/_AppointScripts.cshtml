@@ -1,0 +1,11 @@
+﻿<tag_environment include="Development">
+	<tag_script src="~/js/appoint.js"
+							asp-append-version="true">
+	</tag_script>
+</tag_environment>
+<tag_environment exclude="Development">
+	<tag_script src="~/js/appoint.min.js"
+							asp-fallback-src="~/js/appoint.js"
+							asp-append-version="true">
+	</tag_script>
+</tag_environment>

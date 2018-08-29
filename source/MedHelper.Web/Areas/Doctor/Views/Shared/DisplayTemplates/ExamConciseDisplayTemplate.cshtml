@@ -1,0 +1,9 @@
+﻿@model DoctorExamConciseViewModel
+<tr>
+	<td>@Model.Date</td>
+	<td>@Model.FacilityName</td>
+	<td>@Model.Status</td>
+	<td>
+		<tag_a class="btn btn-success" asp-area="@Roles.DOCTOR" asp-controller="@Controllers.EXAMS" asp-action="Details" asp-route-id="@Model.Id">Details</tag_a>
+	</td>
+</tr>

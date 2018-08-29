@@ -1,0 +1,19 @@
+﻿@model AddPersonnelModel
+@{
+	ViewData["Title"] = "Add Personnel";
+}
+
+<h2>@ViewData["Title"]</h2>
+<tag_form method="post" asp-area="@Roles.ADMIN" asp-controller="@Controllers.FACILITIES" asp-action="AddPersonnel">
+	<tag_input asp-for="FacilityId" value="@Model.FacilityId" hidden />
+	<div class="form-group">
+		<tag_label asp-for="PersonnelIds"></tag_label>
+		<tag_select class="form-control" asp-for="PersonnelIds" multiple>
+			@foreach (var person in Model.UnassignedPersonnel)
+			{
+				<option value="@person.Key">@person.Value</option>
+			}
+		</tag_select>
+	</div>
+	<input class="btn btn-success" type="submit" value="Save" />
+</tag_form>

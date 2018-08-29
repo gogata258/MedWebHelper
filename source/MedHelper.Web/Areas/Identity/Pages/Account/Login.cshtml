@@ -1,0 +1,75 @@
+﻿@page
+@model LoginModel
+@{
+	ViewData["Title"] = "Log in";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+	<div class="col-md-4">
+		<section>
+			<tag_form method="post">
+				<h4>Use a local account to log in.</h4>
+				<hr />
+				<tag_div asp-validation-summary="All" class="text-danger"></tag_div>
+				<div class="form-group">
+					<tag_label asp-for="LoginForm.Username"></tag_label>
+					<tag_input asp-for="LoginForm.Username" class="form-control" />
+					<tag_span asp-validation-for="LoginForm.Username" class="text-danger"></tag_span>
+				</div>
+				<div class="form-group">
+					<tag_label asp-for="LoginForm.Password"></tag_label>
+					<tag_input asp-for="LoginForm.Password" class="form-control" />
+					<tag_span asp-validation-for="LoginForm.Password" class="text-danger"></tag_span>
+				</div>
+				<div class="form-group">
+					<div class="checkbox">
+						<tag_label asp-for="LoginForm.RememberMe">
+							<tag_input asp-for="LoginForm.RememberMe" />
+							@Html.DisplayNameFor(m => m.LoginForm.RememberMe)
+						</tag_label>
+					</div>
+				</div>
+				<div class="form-group">
+					<input type="submit" class="btn btn-success" value="Log in" />
+				</div>
+				<div class="form-group">
+					<p><tag_a asp-page="./ForgotPassword">Forgot your password?</tag_a></p>
+					<p><tag_a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</tag_a></p>
+				</div>
+			</tag_form>
+		</section>
+	</div>
+	<div class="col-md-6 col-md-offset-2">
+		<section>
+			<h4>Use another service to log in.</h4>
+			<hr />
+			@if ((Model.ExternalLogins?.Count ?? 0) == 0)
+			{
+				<div>
+					<p>
+						There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+						for details on setting up this ASP.NET application to support logging in via external services.
+					</p>
+				</div>
+			}
+			else
+			{
+				<tag_form asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+					<div>
+						<p>
+							@foreach (var provider in Model.ExternalLogins)
+							{
+								<button type="submit" class="btn btn-info" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+							}
+						</p>
+					</div>
+				</tag_form>
+			}
+		</section>
+	</div>
+</div>
+
+@section Scripts {
+	<tag_partial name="_ValidationScriptsPartial" />
+}

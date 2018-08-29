@@ -1,0 +1,70 @@
+﻿@model UserDetailsViewModel
+@{
+	ViewData["Title"] = "Details";
+}
+<h2>@ViewData["Title"]</h2>
+<form>
+	<div class="form-group">
+		<tag_label asp-for="FullName"></tag_label>
+		<tag_input class="form-control" asp-for="FullName" />
+	</div>
+	<div class="form-group">
+		<tag_label asp-for="Username"></tag_label>
+		<tag_input class="form-control" asp-for="Username" readonly />
+	</div>
+	<div class="form-group">
+		<tag_label asp-for="Email"></tag_label>
+		<tag_input class="form-control" asp-for="Email" readonly />
+	</div>
+	<div class="form-group">
+		<tag_label asp-for="PhoneNumber"></tag_label>
+		<tag_input class="form-control" asp-for="PhoneNumber" value="@Model.PhoneNumber" />
+	</div>
+	<div class="form-group">
+		<tag_label asp-for="BirthDate"></tag_label>
+		<tag_input class="form-control" asp-for="BirthDate" value="@Model.BirthDate.ToString("yyyy-MM-dd")" />
+	</div>
+	<div class="form-group">
+		<tag_label asp-for="RegisteredDate"></tag_label>
+		<tag_input class="form-control" asp-for="RegisteredDate" value="@Model.RegisteredDate.ToString("yyyy-MM-dd")" />
+	</div>
+	<div class="form-row">
+		<div class="col-3">
+			<tag_label asp-for="IsEmailVerified"></tag_label>
+			@if (Model.IsEmailVerified)
+			{
+				<span class="fa fa-check-circle text-success"></span>
+			}
+		</div>
+		<div class="col-3">
+			<tag_label asp-for="Is2FAEnabled"></tag_label>
+			@if (Model.Is2FAEnabled)
+			{
+				<span class="fa fa-check-circle text-success"></span>
+			}
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="col-4">
+			<tag_label asp-for="IsAdmin"></tag_label>
+			@if (Model.IsAdmin)
+			{
+				<span class="fa fa-check-circle text-success"></span>
+			}
+		</div>
+		<div class="col-4">
+			<tag_label asp-for="IsDoctor"></tag_label>
+			@if (Model.IsDoctor)
+			{
+				<span class="fa fa-check-circle text-success"></span>
+			}
+		</div>
+		<div class="col-4">
+			<tag_label asp-for="IsPersonnel"></tag_label>
+			@if (Model.IsPersonnel)
+			{
+				<span class="fa fa-check-circle text-success"></span>
+			}
+		</div>
+	</div>
+</form>

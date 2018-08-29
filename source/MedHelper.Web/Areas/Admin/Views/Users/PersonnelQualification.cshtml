@@ -1,0 +1,19 @@
+﻿@model IEnumerable<MdConciseViewModel>
+@{
+	ViewData["Title"] = "Personnel";
+}
+<h2>@ViewData["Title"]</h2>
+<table class="table table-striped table-bordered ">
+	<thead>
+		<tr>
+			<td>Name</td>
+			<td>Actions</td>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (MdConciseViewModel md in Model)
+		{
+			@Html.DisplayFor(model => md, DisplayTemplates.ADMIN_MD_CONCISE);
+		}
+	</tbody>
+</table>

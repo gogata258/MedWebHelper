@@ -1,0 +1,17 @@
+﻿@model PublishExamModel
+@{
+	ViewData["Title"] = "Publish";
+}
+<h2>@ViewData["Title"]</h2>
+<tag_form method="post" asp-area="@Roles.PERSONNEL" asp-controller="@Controllers.EXAMS" asp-action="Publish">
+	<tag_input asp-for="Id" value="@Model.Id" hidden />
+	<div class="form-group">
+		<tag_label asp-for="Name"></tag_label>
+		<input class="form-control" value="@Model.Name" readonly />
+	</div>
+	<div class="form-group">
+		<tag_label asp-for="Note"></tag_label>
+		<tag_textarea class="form-control" asp-for="Note"></tag_textarea>
+	</div>
+	<input class="btn btn-success" type="submit" value="Publish" />
+</tag_form>

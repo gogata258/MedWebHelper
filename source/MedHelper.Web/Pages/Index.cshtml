@@ -1,0 +1,21 @@
+﻿@page
+@model IndexModel
+@{
+	ViewData["Title"] = "Home page";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+	<div class="col-md-9">
+		<h4>News</h4>
+		<div class="card-columns">
+			@foreach (NewsCardViewModel news in Model.News)
+			{
+				@Html.DisplayFor(model => news, DisplayTemplates.PAGES_NEWSCARD);
+			}
+		</div>
+	</div>
+	<div class="col-md-3">
+		<h4>More Comming Soon!</h4>
+	</div>
+</div>

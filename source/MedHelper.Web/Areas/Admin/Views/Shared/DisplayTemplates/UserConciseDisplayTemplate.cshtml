@@ -1,0 +1,25 @@
+﻿@model UserConciseViewModel
+<tr>
+	<td>@Model.FullName</td>
+	<td>@Model.Email</td>
+	<td>@Model.Qualification</td>
+	<td>@Html.DisplayFor(model => model.IsPersonnel)</td>
+	<td>@Html.DisplayFor(model => model.IsDoctor)</td>
+	<td>@Html.DisplayFor(model => model.IsAdmin)</td>
+	<td>
+		<tag_a class="btn btn-info" asp-area="@Roles.ADMIN" asp-controller="@Controllers.USERS" asp-action="Details" asp-route-id="@Model.Id">Details</tag_a>
+		@if (Model.IsDoctor || Model.IsPersonnel)
+		{
+			<tag_a class="btn btn-primary" asp-area="@Roles.ADMIN" asp-controller="@Controllers.USERS" asp-action="Fire" asp-route-id="@Model.Id">Fire</tag_a>
+		}
+		else
+		{
+			<tag_a class="btn btn-primary" asp-area="@Roles.ADMIN" asp-controller="@Controllers.USERS" asp-action="MakeDoctor" asp-route-id="@Model.Id">Make Doctor</tag_a>
+			<tag_a class="btn btn-primary" asp-area="@Roles.ADMIN" asp-controller="@Controllers.USERS" asp-action="MakePersonnel" asp-route-id="@Model.Id">Make Personnel</tag_a>
+		}
+		@if (Model.Is2FAEnabled)
+		{
+			<tag_a class="btn btn-danger" asp-area="@Roles.ADMIN" asp-controller="@Controllers.USERS" asp-action="Remove2FA" asp-route-id="@Model.Id">Remove 2FA</tag_a>
+		}
+	</td>
+</tr>

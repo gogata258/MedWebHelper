@@ -1,0 +1,8 @@
+﻿@model UserVisitConciseViewModel
+<tr>
+	<td>@Model.Time</td>
+	<td>@Model.DoctorName</td>
+	<td>
+		<tag_a class="btn btn-warning" asp-area="@Roles.USER" asp-controller="@Controllers.VISITS" asp-action="CancelAppointment" asp-route-id="@Model.Id">Cancel</tag_a>
+	</td>
+</tr>

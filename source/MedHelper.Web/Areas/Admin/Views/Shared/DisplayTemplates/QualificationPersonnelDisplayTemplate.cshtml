@@ -1,0 +1,9 @@
+﻿@model QualificationPersonnelViewModel
+
+<tr>
+	<td>@Model.Name</td>
+	<td>@Model.PositionedSince</td>
+	<td>
+		<tag_a class="btn btn-danger" asp-area="@Roles.ADMIN" asp-controller="@Controllers.QUALIFICATIONS" asp-action="RemovePersonnel" asp-route-id="@Model.Id" asp-route-qualificationId="@Model.QualificationId">Remove</tag_a>
+	</td>
+</tr>

@@ -1,0 +1,12 @@
+﻿@model QualificationConciseViewModel
+<tr>
+	<td>@Model.Name</td>
+	<td>@Model.Doctors</td>
+	<td>
+		<tag_a class="btn btn-info" asp-area="@Roles.ADMIN" asp-controller="@Controllers.QUALIFICATIONS" asp-action="Personnel" asp-route-id="@Model.Id">Doctors</tag_a>
+		@if (Model.Name != Qualifications.PERSONNEL)
+		{
+			<tag_a class="btn btn-danger" asp-area="@Roles.ADMIN" asp-controller="@Controllers.QUALIFICATIONS" asp-action="Delete" asp-route-id="@Model.Id">Delete</tag_a>
+		}
+	</td>
+</tr>

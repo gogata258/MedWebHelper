@@ -1,0 +1,16 @@
+﻿@model PersonnelExamConciseViewModel
+<tr>
+	<td>@Model.Date</td>
+	<td>@Model.Name</td>
+	<td>@Model.Status</td>
+	<td>
+		@if (Model.Status == ExamStatuses.PENDING)
+		{
+			<tag_a class="btn btn-success" asp-area="@Roles.PERSONNEL" asp-controller="@Controllers.EXAMS" asp-action="Screen" asp-route-id="@Model.Id">Screen</tag_a>
+		}
+		else
+		{
+			<tag_a class="btn btn-success" asp-area="@Roles.PERSONNEL" asp-controller="@Controllers.EXAMS" asp-action="Publish" asp-route-id="@Model.Id">Publish</tag_a>
+		}
+	</td>
+</tr>

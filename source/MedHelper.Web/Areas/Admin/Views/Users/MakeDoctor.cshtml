@@ -1,0 +1,47 @@
+﻿@model AddDoctorModel
+@{
+	ViewData["Title"] = "Promote doctor";
+}
+
+<h3>@ViewData["Title"]</h3>
+<tag_form method="post" asp-area="@Roles.ADMIN" asp-controller="@Controllers.USERS" asp-action="MakeDoctor">
+	<tag_input asp-for="DoctorId" value="@Model.DoctorId" hidden />
+	<div class="form-group">
+		<tag_label asp-for="QualificationId"></tag_label>
+		<tag_select class="form-control" asp-for="QualificationId">
+			@foreach (var qualification in Model.Qualifications)
+			{
+				<option value="@qualification.Key">@qualification.Value</option>
+			}
+		</tag_select>
+		<tag_span asp-validation-for="QualificationId"></tag_span>
+	</div>
+	<div class="form-group">
+		<tag_label asp-for="HasStandardWorkTime"></tag_label>
+		@Html.EditorFor(m => m.HasStandardWorkTime)
+		<tag_span asp-validation-for="HasStandardWorkTime"></tag_span>
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-3">
+			<tag_label asp-for="WorkTimeStart"></tag_label>
+			<tag_input class="form-control" asp-for="WorkTimeStart" />
+			<tag_span asp-validation-for="WorkTimeStart"></tag_span>
+		</div>
+		<div class="form-group col-md-3">
+			<tag_label asp-for="WorkTimeEnd"></tag_label>
+			<tag_input class="form-control" asp-for="WorkTimeEnd" />
+			<tag_span asp-validation-for="WorkTimeEnd"></tag_span>
+		</div>
+		<div class="form-group col-md-3">
+			<tag_label asp-for="BreakStart"></tag_label>
+			<tag_input class="form-control" asp-for="BreakStart" />
+			<tag_span asp-validation-for="BreakStart"></tag_span>
+		</div>
+		<div class="form-group col-md-3">
+			<tag_label asp-for="BreakEnd"></tag_label>
+			<tag_input class="form-control" asp-for="BreakEnd" />
+			<tag_span asp-validation-for="BreakEnd"></tag_span>
+		</div>
+	</div>
+	<input class="btn btn-success offset-11" type="submit" value="Save" />
+</tag_form>

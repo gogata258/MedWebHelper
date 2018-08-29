@@ -1,0 +1,52 @@
+﻿@page
+@model RegisterModel
+@{
+	ViewData["Title"] = "Register";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+	<div class="col-md-4">
+		<tag_form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+			<h4>Create a new account.</h4>
+			<hr />
+			<tag_div asp-validation-summary="All" class="text-danger"></tag_div>
+			<div class="form-group">
+				<tag_label asp-for="RegisterForm.Username"></tag_label>
+				<tag_input asp-for="RegisterForm.Username" class="form-control" />
+				<tag_span asp-validation-for="RegisterForm.Username" class="text-danger"></tag_span>
+			</div>
+			<div class="form-group">
+				<tag_label asp-for="RegisterForm.Email"></tag_label>
+				<tag_input asp-for="RegisterForm.Email" class="form-control" />
+				<tag_span asp-validation-for="RegisterForm.Email" class="text-danger"></tag_span>
+			</div>
+			<div class="form-group">
+				<tag_label asp-for="RegisterForm.BirthDate"></tag_label>
+				<tag_input asp-for="RegisterForm.BirthDate" class="form-control" />
+				<tag_span asp-validation-for="RegisterForm.BirthDate" class="text-danger"></tag_span>
+			</div>
+			<div class="form-group">
+				<tag_label asp-for="RegisterForm.FullName"></tag_label>
+				<tag_input asp-for="RegisterForm.FullName" class="form-control" />
+				<tag_span asp-validation-for="RegisterForm.FullName" class="text-danger"></tag_span>
+			</div>
+			<div class="form-group">
+				<tag_label asp-for="RegisterForm.Password"></tag_label>
+				<tag_input asp-for="RegisterForm.Password" class="form-control" />
+				<tag_span asp-validation-for="RegisterForm.Password" class="text-danger"></tag_span>
+			</div>
+			<div class="form-group">
+				<tag_label asp-for="RegisterForm.ConfirmPassword"></tag_label>
+				<tag_input asp-for="RegisterForm.ConfirmPassword" class="form-control" />
+				<tag_span asp-validation-for="RegisterForm.ConfirmPassword" class="text-danger"></tag_span>
+			</div>
+			<input type="submit" class="btn btn-success" value="Register" />
+		</tag_form>
+	</div>
+</div>
+
+@section Scripts {
+	<tag_partial name="_ValidationScriptsPartial" />
+}

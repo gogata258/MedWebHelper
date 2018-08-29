@@ -1,0 +1,32 @@
+﻿@model ExamBindingModel
+@{
+	ViewData["Title"] = "Issue Exam";
+}
+<h2>@ViewData["Title"]</h2>
+<tag_form method="post" asp-area="@Roles.DOCTOR" asp-controller="@Controllers.EXAMS" asp-action="IssueExam">
+	<tag_input asp-for="PatientId" value="@Model.PatientId" hidden />
+	<tag_input asp-for="VisitId" value="@Model.VisitId" hidden />
+	<div class="form-group">
+		<tag_label asp-for="PatientName"></tag_label>
+		<tag_input class="form-control" asp-for="PatientName" value="@Model.PatientName" readonly />
+	</div>
+	<div class="form-group">
+		<tag_label asp-for="Note"></tag_label>
+		<tag_textarea class="form-control" asp-for="Note"></tag_textarea>
+	</div>
+	<div class="form-group">
+		<tag_label asp-for="FacilityId"></tag_label>
+		<tag_select class="form-control" asp-for="FacilityId">
+			@foreach (var facility in Model.Facilities)
+			{
+				<option value="@facility.Key">@facility.Value</option>
+			}
+		</tag_select>
+		<tag_span asp-validation-for="FacilityId"></tag_span>
+	</div>
+	<input class="btn btn-success col-1 offset-11" type="submit" value="Save" />
+</tag_form>
+
+@section Scripts{
+	<tag_partial name="_ValidationScriptsPartial" />
+}

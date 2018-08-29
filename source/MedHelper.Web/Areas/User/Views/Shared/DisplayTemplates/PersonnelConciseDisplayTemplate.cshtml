@@ -1,0 +1,8 @@
+﻿@model PersonnelConciseViewModel
+<tr>
+	<td>@Model.Name</td>
+	<td>@Model.Qualification</td>
+	<td>
+		<tag_a class="btn btn-success" asp-area="@Roles.USER" asp-controller="@Controllers.VISITS" asp-action="Appoint" asp-route-id="@Model.Id">Make Appointment</tag_a>
+	</td>
+</tr>

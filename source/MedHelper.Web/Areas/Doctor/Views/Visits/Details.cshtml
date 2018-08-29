@@ -1,0 +1,21 @@
+﻿@model PatientVisitDetailsViewModel
+@{
+	ViewData["Title"] = "Details";
+}
+<h2>@ViewData["Title"]</h2>
+<form>
+	<div class="form-group">
+		<tag_label asp-for="Name"></tag_label>
+		<tag_input class="form-control" asp-for="Name" value="@Model.Name" readonly />
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-8">
+			<tag_label asp-for="Date"></tag_label>
+			<tag_input class="form-control" asp-for="Date" value="@Model.Date" readonly />
+		</div>
+		<div class="form-group col-md-4">
+			<tag_label asp-for="Status"></tag_label>
+			<tag_input class="form-control" asp-for="Status" value="@Model.Status" readonly />
+		</div>
+	</div>
+</form>

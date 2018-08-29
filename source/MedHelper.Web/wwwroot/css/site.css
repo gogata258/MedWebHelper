@@ -1,0 +1,20 @@
+﻿/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+/* QR code generator */
+#qrCode {
+	margin: 15px;
+}
+
+.identity-link {
+	color: darkslategrey;
+}
+
+.active {
+	background-color: #3a3aaf33;
+	border-radius: .3rem;
+}

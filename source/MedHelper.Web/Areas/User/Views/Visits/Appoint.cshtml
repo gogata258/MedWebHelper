@@ -1,0 +1,32 @@
+﻿@model AppointmentModel
+@{
+	ViewData["Title"] = "Make Appointment";
+}
+<h2>@ViewData["Title"]</h2>
+<tag_partial name="_StatusMessage" model="@ViewData["Error"]" />
+<tag_form method="post" asp-area="@Roles.USER" asp-controller="@Controllers.VISITS" asp-action="Appoint">
+	<tag_input type="hidden" asp-for="PatientId" value="@Model.PatientId" />
+	<tag_input type="hidden" asp-for="DoctorId" value="@Model.DoctorId" />
+	<div class="form-group col-6">
+		<tag_label asp-for="Date"></tag_label>
+		<tag_input class="form-control" asp-for="Date" value="@Model.Date.ToString("yyyy-MM-dd")" onchange="getDates();" />
+		<tag_span asp-validation-for="Date">
+		</tag_span>
+	</div>
+	<div class="form-group col-6">
+		<tag_label asp-for="Time"></tag_label>
+		<tag_select class="form-control" asp-for="Time">
+			@foreach (DateTime time in Model.AvaliableTimes)
+			{
+				<option>@time.ToShortTimeString()</option>
+			}
+		</tag_select>
+		<tag_span asp-validation-for="Date"></tag_span>
+	</div>
+	<input class="btn btn-success" type="submit" value="Save" />
+</tag_form>
+
+@section Scripts {
+	<tag_partial name="_ValidationScriptsPartial" />
+	<tag_partial name="_AppointScripts" />
+}
