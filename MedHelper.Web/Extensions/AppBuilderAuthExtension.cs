@@ -63,10 +63,10 @@ namespace MedHelper.Web.Extensions
 
 		private static async Task EnsureAdminCreated(UserManager<User> manager)
 		{
-			User adminUser = await manager.FindByNameAsync("Admin");
+			User adminUser = await manager.FindByNameAsync("admin");
 			if (adminUser is null)
 			{
-				adminUser = new User("Administrator", "Admin", "admin@medhelper.com", System.DateTime.Now);
+				adminUser = new User("Administrator", "admin", "admin@medhelper.com", System.DateTime.Now);
 				IdentityResult result = await manager.CreateAsync(adminUser, DEFAULT_ADMIN_PASSWORD);
 				result = await manager.AddToRolesAsync(adminUser, new List<string>() { Roles.ADMIN, Roles.USER });
 			}
