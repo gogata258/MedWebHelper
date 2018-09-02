@@ -33,8 +33,9 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account
 		[TempData]
 		public string ErrorMessage { get; set; }
 
-		public async Task OnGetAsync(string returnUrl = null)
+		public async Task<IActionResult> OnGetAsync(string returnUrl = null)
 		{
+			if (User.Claims.Any()) return RedirectToPage("/Index");
 			if (!string.IsNullOrEmpty(ErrorMessage)) ModelState.AddModelError(string.Empty, ErrorMessage);
 			returnUrl = returnUrl ?? Url.Content("~/");
 
@@ -42,6 +43,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account
 			await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 			ExternalLogins = (await userService.SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 			ReturnUrl = returnUrl;
+			return Page();
 		}
 
 		public async Task<IActionResult> OnPostAsync(string returnUrl = null)

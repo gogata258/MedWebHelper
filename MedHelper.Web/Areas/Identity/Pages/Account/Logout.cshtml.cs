@@ -3,11 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 namespace MedHelper.Web.Areas.Identity.Pages.Account
 {
 	using Common.Constants;
 	using Services.Identity.Interfaces;
+
 	[AllowAnonymous]
 	public class LogoutModel : PageModel
 	{
@@ -25,6 +27,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account
 
 		public async Task<IActionResult> OnPost(string returnUrl = null)
 		{
+			if (!User.Claims.Any()) return RedirectToPage("/Index");
 			await userService.SignInManager.SignOutAsync();
 			logger.LogInformation(Messages.LOGGER_INFO_USER_LOGGED_OUT);
 			return returnUrl != null ? LocalRedirect(returnUrl) : (IActionResult)Page();
