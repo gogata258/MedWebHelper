@@ -27,20 +27,20 @@ else
 	<title>@ViewData["Title"] - MedHelper</title>
 
 	<tag_environment include="Development">
-		<tag_link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+		<tag_link rel="stylesheet" href="~/lib/node_modules/bootstrap/dist/css/bootstrap.css" />
 		<tag_link rel="stylesheet" href="~/css/site.css" />
-		<tag_link rel="stylesheet" href="~/lib/fontawesome/css/all.css" />
+		<tag_link rel="stylesheet" href="~/lib/node_modules/@@fortawesome/fontawesome-free/css/all.css" />
 	</tag_environment>
 	<tag_environment exclude="Development">
 		<tag_link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-							asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+							asp-fallback-href="~/lib/node_modules/bootstrap/dist/css/bootstrap.min.css"
 							asp-fallback-test-class="sr-only"
 							asp-fallback-test-property="position"
 							asp-fallback-test-value="absolute"
 							integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 							crossorigin="anonymous" />
 		<tag_link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-							asp-fallback-href="~/lib/fontawesome/css/all.min.css"
+							asp-fallback-href="~/lib/node_modules/@@fortawesome/fontawesome-free/css/all.css"
 							integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
 							crossorigin="anonymous" />
 		<tag_link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
@@ -121,19 +121,19 @@ else
 	</div>
 
 	<tag_environment include="Development">
-		<tag_script src="~/lib/jquery/dist/jquery.js"></tag_script>
-		<tag_script src="~/lib/bootstrap/dist/js/bootstrap.js"></tag_script>
+		<tag_script src="~/lib/node_modules/jquery/dist/jquery.js"></tag_script>
+		<tag_script src="~/lib/node_modules/bootstrap/dist/js/bootstrap.js"></tag_script>
 		<tag_script src="~/js/site.js" asp-append-version="true"></tag_script>
 	</tag_environment>
 	<tag_environment exclude="Development">
 		<tag_script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-								asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+								asp-fallback-src="~/lib/node_modules/jquery/dist/jquery.min.js"
 								asp-fallback-test="window.jQuery"
 								integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 								crossorigin="anonymous">
 		</tag_script>
 		<tag_script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-								asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+								asp-fallback-src="~/lib/node_modules/bootstrap/dist/js/bootstrap.min.js"
 								asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
 								integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 								crossorigin="anonymous">
