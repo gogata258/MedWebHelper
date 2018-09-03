@@ -22,9 +22,9 @@
 }
 
 .bg-red {
-	background-color: var(--color-bg) !important;
+	background-color: var(--color-red) !important;
 }
 
-.test-light {
-	color: var(--colot-text-light);
+.text-red {
+	color: var(--color-red);
 }
