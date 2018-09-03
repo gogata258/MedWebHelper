@@ -47,57 +47,57 @@ else
 	</tag_environment>
 </head>
 <body>
-	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-md navbar-dark bg-red">
 		<tag_a class="navbar-brand" asp-page="/Index">@ViewData["NavbarBrand"]</tag_a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><tag_a class="nav-link" asp-page="/Index">Index</tag_a></li>
-				<li class="nav-item"><tag_a class="nav-link" asp-page="/About">About</tag_a></li>
-				<li class="nav-item"><tag_a class="nav-link" asp-page="/Contact">Contact</tag_a></li>
+				<li class="nav-item"><tag_a class="nav-link text-light" asp-page="/Index">Index</tag_a></li>
+				<li class="nav-item"><tag_a class="nav-link text-light" asp-page="/About">About</tag_a></li>
+				<li class="nav-item"><tag_a class="nav-link text-light" asp-page="/Contact">Contact</tag_a></li>
 				@if (User.IsInRole(Roles.ADMIN))
 				{
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Roles.ADMIN</a>
+						<a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Roles.ADMIN</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<tag_a class="dropdown-item" asp-area="@Roles.ADMIN" asp-controller="@Controllers.USERS" asp-action="All">All Users</tag_a>
+							<tag_a class="dropdown-item text-light" asp-area="@Roles.ADMIN" asp-controller="@Controllers.USERS" asp-action="All">All Users</tag_a>
 							<div class="dropdown-divider"></div>
-							<tag_a class="dropdown-item" asp-area="@Roles.ADMIN" asp-controller="@Controllers.FACILITIES" asp-action="Add">Add Facility</tag_a>
-							<tag_a class="dropdown-item" asp-area="@Roles.ADMIN" asp-controller="@Controllers.FACILITIES" asp-action="All">All Facilities</tag_a>
+							<tag_a class="dropdown-item text-light" asp-area="@Roles.ADMIN" asp-controller="@Controllers.FACILITIES" asp-action="Add">Add Facility</tag_a>
+							<tag_a class="dropdown-item text-light" asp-area="@Roles.ADMIN" asp-controller="@Controllers.FACILITIES" asp-action="All">All Facilities</tag_a>
 							<div class="dropdown-divider"></div>
-							<tag_a class="dropdown-item" asp-area="@Roles.ADMIN" asp-controller="@Controllers.QUALIFICATIONS" asp-action="Add">Add Qualification</tag_a>
-							<tag_a class="dropdown-item" asp-area="@Roles.ADMIN" asp-controller="@Controllers.QUALIFICATIONS" asp-action="All">All Qualifications</tag_a>
+							<tag_a class="dropdown-item text-light" asp-area="@Roles.ADMIN" asp-controller="@Controllers.QUALIFICATIONS" asp-action="Add">Add Qualification</tag_a>
+							<tag_a class="dropdown-item text-light" asp-area="@Roles.ADMIN" asp-controller="@Controllers.QUALIFICATIONS" asp-action="All">All Qualifications</tag_a>
 						</div>
 					</li>
 				}
 				@if (User.IsInRole(Roles.USER))
 				{
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Roles.USER</a>
+						<a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Roles.USER</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<tag_a class="dropdown-item" asp-area="@Roles.USER" asp-controller="@Controllers.USERS" asp-action="Doctors">Doctors</tag_a>
+							<tag_a class="dropdown-item text-light" asp-area="@Roles.USER" asp-controller="@Controllers.USERS" asp-action="Doctors">Doctors</tag_a>
 							<div class="dropdown-divider"></div>
-							<tag_a class="dropdown-item" asp-area="@Roles.USER" asp-controller="@Controllers.VISITS" asp-action="All">Appointments</tag_a>
+							<tag_a class="dropdown-item text-light" asp-area="@Roles.USER" asp-controller="@Controllers.VISITS" asp-action="All">Appointments</tag_a>
 						</div>
 					</li>
 				}
 				@if (User.IsInRole(Roles.DOCTOR))
 				{
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Roles.DOCTOR</a>
+						<a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Roles.DOCTOR</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<tag_a class="dropdown-item" asp-area="@Roles.DOCTOR" asp-controller="@Controllers.VISITS" asp-action="All">Appointments</tag_a>
+							<tag_a class="dropdown-item text-light" asp-area="@Roles.DOCTOR" asp-controller="@Controllers.VISITS" asp-action="All">Appointments</tag_a>
 						</div>
 					</li>
 				}
 				@if (User.IsInRole(Roles.PERSONNEL))
 				{
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Roles.PERSONNEL</a>
+						<a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Roles.PERSONNEL</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<tag_a class="dropdown-item" asp-area="@Roles.PERSONNEL" asp-controller="@Controllers.EXAMS" asp-action="All">Exams</tag_a>
+							<tag_a class="dropdown-item text-light" asp-area="@Roles.PERSONNEL" asp-controller="@Controllers.EXAMS" asp-action="All">Exams</tag_a>
 						</div>
 					</li>
 				}

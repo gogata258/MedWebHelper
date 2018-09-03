@@ -29,6 +29,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Content Remove="compilerconfig.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Content Include="wwwroot\lib\node_modules\%40fortawesome\fontawesome-free\css\all.css" />
 	  <Content Include="wwwroot\lib\node_modules\%40fortawesome\fontawesome-free\css\all.min.css" />
 	  <Content Include="wwwroot\lib\node_modules\%40fortawesome\fontawesome-free\css\brands.css" />
@@ -71,6 +75,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Include="compilerconfig.json" />
 	  <None Include="wwwroot\lib\node_modules\%40fortawesome\fontawesome-free\js\all.js" />
 	  <None Include="wwwroot\lib\node_modules\%40fortawesome\fontawesome-free\js\all.min.js" />
 	  <None Include="wwwroot\lib\node_modules\%40fortawesome\fontawesome-free\js\brands.js" />

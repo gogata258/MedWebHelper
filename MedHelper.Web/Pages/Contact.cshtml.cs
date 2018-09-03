@@ -5,7 +5,6 @@ namespace MedHelper.Web.Pages
 	{
 		public string Message { get; set; }
 
-		//public void OnGet() => Message = "Contact MedHelper Developer";
-		public void OnGet() => throw new System.NotImplementedException("Test exception");
+		public void OnGet() => Message = "Contact MedHelper Developer";
 	}
 }
