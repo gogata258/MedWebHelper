@@ -1800,7 +1800,7 @@
 		<Content Update="Areas\Doctor\Views\Shared\DisplayTemplates\VisitConciseDisplayTemplate.cshtml">
 			<Pack>$(IncludeRazorContentInPack)</Pack>
 		</Content>
-		<Content Update="Areas\Doctor\Views\Shared\_StatusMessage.cshtml">
+		<Content Update="Pages\Shared\_StatusMessagePartial.cshtml">
 			<Pack>$(IncludeRazorContentInPack)</Pack>
 		</Content>
 		<Content Update="Areas\Doctor\Views\_ViewImports.cshtml">
@@ -1813,9 +1813,6 @@
 			<Pack>$(IncludeRazorContentInPack)</Pack>
 		</Content>
 		<Content Update="Areas\Personnel\Views\_ViewStart.cshtml">
-			<Pack>$(IncludeRazorContentInPack)</Pack>
-		</Content>
-		<Content Update="Areas\User\Views\Shared\_StatusMessage.cshtml">
 			<Pack>$(IncludeRazorContentInPack)</Pack>
 		</Content>
 		<Content Update="Areas\User\Views\Users\Doctors.cshtml">

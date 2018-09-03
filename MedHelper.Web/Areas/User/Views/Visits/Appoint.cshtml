@@ -3,7 +3,7 @@
 	ViewData["Title"] = "Make Appointment";
 }
 <h2>@ViewData["Title"]</h2>
-<tag_partial name="_StatusMessage" model="@ViewData["Error"]" />
+<tag_partial name="_StatusMessagePartial" model="@ViewData["Error"]" />
 <tag_form method="post" asp-area="@Roles.USER" asp-controller="@Controllers.VISITS" asp-action="Appoint">
 	<tag_input type="hidden" asp-for="PatientId" value="@Model.PatientId" />
 	<tag_input type="hidden" asp-for="DoctorId" value="@Model.DoctorId" />
@@ -28,5 +28,5 @@
 
 @section Scripts {
 	<tag_partial name="_ValidationScriptsPartial" />
-	<tag_partial name="_AppointScripts" />
+	<tag_partial name="_AppointScriptsPartial" />
 }

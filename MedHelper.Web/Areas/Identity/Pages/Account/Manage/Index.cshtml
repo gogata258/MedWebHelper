@@ -6,7 +6,7 @@
 }
 
 <h4>@ViewData["Title"]</h4>
-<tag_partial name="_StatusMessage" model="@Model.StatusMessage" />
+<tag_partial name="_StatusMessagePartial" model="@Model.StatusMessage" />
 <div class="row">
 	<div class="col-md-6">
 		<tag_form id="profile-form" method="post">
@@ -28,7 +28,7 @@
 				else
 				{
 					<tag_input asp-for="DetailsForm.Email" class="form-control" />
-					<tag_button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verification email</tag_button>
+					<tag_button class="btn btn-link form-control text-left" id="email-verification" type="submit" asp-page-handler="SendVerificationEmail">Send verification email</tag_button>
 				}
 				<tag_span asp-validation-for="DetailsForm.Email" class="text-danger"></tag_span>
 			</div>
