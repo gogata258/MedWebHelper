@@ -16,15 +16,23 @@
 	color: darkslategrey;
 }
 
-.active {
-	background-color: #3a3aaf33;
+.navitem-active {
+	background-color: var(--color-red-pale);
 	border-radius: .3rem;
 }
 
-.bg-red {
-	background-color: var(--color-bg) !important;
+.navlink:hover {
+	color: var(--color-red-dark);
 }
 
-.test-light {
-	color: var(--colot-text-light);
+.navlink {
+	color: var(--color-red-saturated);
+}
+
+.bg-red {
+	background-color: var(--color-red) !important;
+}
+
+.text-red {
+	color: var(--color-red);
 }

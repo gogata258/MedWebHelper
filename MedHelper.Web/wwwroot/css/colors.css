@@ -1,5 +1,6 @@
 ﻿:root {
-	--color-bg: #cc0000;
-	--colot-text: #cc0000;
-	--colot-text-light: #ff6666;
+	--color-red: #cc0000;
+	--color-red-saturated: #ff3333;
+	--color-red-dark: #b30000;
+	--color-red-pale: #ff99bb44;
 }

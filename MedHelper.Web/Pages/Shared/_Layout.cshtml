@@ -62,13 +62,13 @@ else
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Roles.ADMIN</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<tag_a class="dropdown-item text-light" asp-area="@Roles.ADMIN" asp-controller="@Controllers.USERS" asp-action="All">All Users</tag_a>
+							<tag_a class="dropdown-item text-red" asp-area="@Roles.ADMIN" asp-controller="@Controllers.USERS" asp-action="All">All Users</tag_a>
 							<div class="dropdown-divider"></div>
-							<tag_a class="dropdown-item text-light" asp-area="@Roles.ADMIN" asp-controller="@Controllers.FACILITIES" asp-action="Add">Add Facility</tag_a>
-							<tag_a class="dropdown-item text-light" asp-area="@Roles.ADMIN" asp-controller="@Controllers.FACILITIES" asp-action="All">All Facilities</tag_a>
+							<tag_a class="dropdown-item text-red" asp-area="@Roles.ADMIN" asp-controller="@Controllers.FACILITIES" asp-action="Add">Add Facility</tag_a>
+							<tag_a class="dropdown-item text-red" asp-area="@Roles.ADMIN" asp-controller="@Controllers.FACILITIES" asp-action="All">All Facilities</tag_a>
 							<div class="dropdown-divider"></div>
-							<tag_a class="dropdown-item text-light" asp-area="@Roles.ADMIN" asp-controller="@Controllers.QUALIFICATIONS" asp-action="Add">Add Qualification</tag_a>
-							<tag_a class="dropdown-item text-light" asp-area="@Roles.ADMIN" asp-controller="@Controllers.QUALIFICATIONS" asp-action="All">All Qualifications</tag_a>
+							<tag_a class="dropdown-item text-red" asp-area="@Roles.ADMIN" asp-controller="@Controllers.QUALIFICATIONS" asp-action="Add">Add Qualification</tag_a>
+							<tag_a class="dropdown-item text-red" asp-area="@Roles.ADMIN" asp-controller="@Controllers.QUALIFICATIONS" asp-action="All">All Qualifications</tag_a>
 						</div>
 					</li>
 				}
@@ -77,9 +77,9 @@ else
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Roles.USER</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<tag_a class="dropdown-item text-light" asp-area="@Roles.USER" asp-controller="@Controllers.USERS" asp-action="Doctors">Doctors</tag_a>
+							<tag_a class="dropdown-item text-red" asp-area="@Roles.USER" asp-controller="@Controllers.USERS" asp-action="Doctors">Doctors</tag_a>
 							<div class="dropdown-divider"></div>
-							<tag_a class="dropdown-item text-light" asp-area="@Roles.USER" asp-controller="@Controllers.VISITS" asp-action="All">Appointments</tag_a>
+							<tag_a class="dropdown-item text-red" asp-area="@Roles.USER" asp-controller="@Controllers.VISITS" asp-action="All">Appointments</tag_a>
 						</div>
 					</li>
 				}
@@ -88,7 +88,7 @@ else
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Roles.DOCTOR</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<tag_a class="dropdown-item text-light" asp-area="@Roles.DOCTOR" asp-controller="@Controllers.VISITS" asp-action="All">Appointments</tag_a>
+							<tag_a class="dropdown-item text-red" asp-area="@Roles.DOCTOR" asp-controller="@Controllers.VISITS" asp-action="All">Appointments</tag_a>
 						</div>
 					</li>
 				}
@@ -97,7 +97,7 @@ else
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Roles.PERSONNEL</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<tag_a class="dropdown-item text-light" asp-area="@Roles.PERSONNEL" asp-controller="@Controllers.EXAMS" asp-action="All">Exams</tag_a>
+							<tag_a class="dropdown-item text-red" asp-area="@Roles.PERSONNEL" asp-controller="@Controllers.EXAMS" asp-action="All">Exams</tag_a>
 						</div>
 					</li>
 				}
@@ -115,7 +115,7 @@ else
 		<footer>
 			<div class="row">
 				<label class="col-2">&copy; 2018 - MedHelper</label>
-				<tag_a class="col-1 offset-9 text-right" asp-page="/Privacy">Privacy</tag_a>
+				<tag_a class="col-1 offset-9 text-right navlink" asp-page="/Privacy">Privacy</tag_a>
 			</div>
 		</footer>
 	</div>
