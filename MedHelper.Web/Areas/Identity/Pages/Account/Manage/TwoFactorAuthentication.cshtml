@@ -1,0 +1,51 @@
+﻿@page
+@model TwoFactorAuthenticationModel
+@{
+	ViewData["Title"] = "Two-factor authentication (2FA)";
+}
+
+<tag_partial name="_StatusMessagePartial" model="@Model.StatusMessage" />
+<h4>@ViewData["Title"]</h4>
+@if (Model.Is2faEnabled)
+{
+	if (Model.RecoveryCodesLeft == 0)
+	{
+		<div class="alert alert-danger">
+			<strong>You have no recovery codes left.</strong>
+			<p>You must <tag_a asp-page="./GenerateRecoveryCodes">generate a new set of recovery codes</tag_a> before you can log in with a recovery code.</p>
+		</div>
+	}
+	else if (Model.RecoveryCodesLeft == 1)
+	{
+		<div class="alert alert-danger">
+			<strong>You have 1 recovery code left.</strong>
+			<p>You can <tag_a asp-page="./GenerateRecoveryCodes">generate a new set of recovery codes</tag_a>.</p>
+		</div>
+	}
+	else if (Model.RecoveryCodesLeft <= 3)
+	{
+		<div class="alert alert-warning">
+			<strong>You have @Model.RecoveryCodesLeft recovery codes left.</strong>
+			<p>You should <tag_a asp-page="./GenerateRecoveryCodes">generate a new set of recovery codes</tag_a>.</p>
+		</div>
+	}
+
+	if (Model.IsMachineRemembered)
+	{
+		<tag_form method="post" style="display: inline-block">
+			<input type="submit" class="btn btn-info" value="Forget This Browser">
+		</tag_form>
+	}
+	<h5>Authenticator app</h5>
+	<tag_a asp-page="./ResetAuthenticator" class="btn btn-warning">Reset</tag_a>
+	<tag_a asp-page="./Disable2fa" class="btn btn-danger">Disable</tag_a>
+	<tag_a asp-page="./GenerateRecoveryCodes" class="btn btn-warning">Generate Codes</tag_a>
+}
+else
+{
+	<tag_a asp-page="./EnableAuthenticator" class="btn btn-success">Setup</tag_a>
+}
+
+@section Scripts {
+	<tag_partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,20 @@
+﻿@page
+@model ShowRecoveryCodesModel
+@{
+	ViewData["Title"] = "Show two-factor authentication (2FA) recovery codes";
+	ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<tag_partial name="_StatusMessagePartial" model="@Model.StatusMessage" />
+<h4>@ViewData["Title"]</h4>
+<div>
+	@{
+		string[] keys = (string[])TempData["RecoveryCodes"];
+	}
+	<p>
+		@foreach (var key in keys)
+		{
+			<kbd>@key</kbd>
+		}
+	</p>
+</div>
