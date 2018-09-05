@@ -14,6 +14,7 @@
 		<LangVersion>7.3</LangVersion>
 		<Deterministic>False</Deterministic>
 		<TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
+		<UserSecretsId>be92cd6b-33e4-4cd8-b890-1b8458bb1b59</UserSecretsId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -27,10 +28,6 @@
 		<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
 		<DefineConstants></DefineConstants>
 	</PropertyGroup>
-
-	<ItemGroup>
-	  <Content Remove="compilerconfig.json" />
-	</ItemGroup>
 
 	<ItemGroup>
 	  <Content Include="wwwroot\lib\node_modules\%40fortawesome\fontawesome-free\css\all.css" />
@@ -75,7 +72,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="compilerconfig.json" />
 	  <None Include="wwwroot\lib\node_modules\%40fortawesome\fontawesome-free\js\all.js" />
 	  <None Include="wwwroot\lib\node_modules\%40fortawesome\fontawesome-free\js\all.min.js" />
 	  <None Include="wwwroot\lib\node_modules\%40fortawesome\fontawesome-free\js\brands.js" />
@@ -1821,6 +1817,14 @@
 		<Content Update="Areas\User\Views\_ViewStart.cshtml">
 			<Pack>$(IncludeRazorContentInPack)</Pack>
 		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <WCFMetadata Include="Connected Services" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Connected Services\" />
 	</ItemGroup>
 
 </Project>
