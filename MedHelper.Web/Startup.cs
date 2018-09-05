@@ -71,13 +71,13 @@ namespace MedHelper.Web
 		private void SetupOAuth(IServiceCollection services) => services.AddAuthentication()
 				.AddFacebook(o =>
 				{
-					o.AppId = Configuration.GetValue<string>("Services:Facebook:AppId");
-					o.AppSecret = Configuration.GetValue<string>("Services:Facebook:AppSecret");
+					o.AppId = Configuration["Services:Facebook:AppId"];
+					o.AppSecret = Configuration["Services:Facebook:AppSecret"];
 				})
 				.AddGoogle(o =>
 				{
-					o.ClientId = Configuration.GetValue<string>("Services:Google:ClientId");
-					o.ClientSecret = Configuration.GetValue<string>("Services:Google:ClientSecret");
+					o.ClientId = Configuration["Services:Google:ClientId"];
+					o.ClientSecret = Configuration["Services:Google:ClientSecret"];
 				});
 
 		private void RegisterGlobalServices(IServiceCollection services)
