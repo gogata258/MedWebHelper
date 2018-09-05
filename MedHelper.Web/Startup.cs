@@ -12,6 +12,7 @@ namespace MedHelper.Web
 	using Data;
 	using Data.Models;
 	using Extensions;
+	using Microsoft.Extensions.Configuration.AzureKeyVault;
 	using Services.Admin;
 	using Services.Admin.Interfaces;
 	using Services.Doctor;
@@ -70,13 +71,13 @@ namespace MedHelper.Web
 		private void SetupOAuth(IServiceCollection services) => services.AddAuthentication()
 				.AddFacebook(o =>
 				{
-					o.AppId = Configuration.GetValue<string>("Services:Facebook:AppId");
-					o.AppSecret = Configuration.GetValue<string>("Services:Facebook:AppSecret");
+					o.AppId = Configuration["Services:Facebook:AppId"];
+					o.AppSecret = Configuration["Services:Facebook:AppSecret"];
 				})
 				.AddGoogle(o =>
 				{
-					o.ClientId = Configuration.GetValue<string>("Services:Google:ClientId");
-					o.ClientSecret = Configuration.GetValue<string>("Services:Google:ClientSecret");
+					o.ClientId = Configuration["Services:Google:ClientId"];
+					o.ClientSecret = Configuration["Services:Google:ClientSecret"];
 				});
 
 		private void RegisterGlobalServices(IServiceCollection services)
@@ -100,6 +101,7 @@ namespace MedHelper.Web
 			services.AddTransient<IDoctorFacilityService, DoctorFacilityService>();
 			services.AddTransient<IPersonnelExamService, PersonnelExamService>();
 			services.AddSingleton<IEmailSender, SendGridService>();
+			services.AddSingleton<IKeyVaultSecretManager, DefaultKeyVaultSecretManager>();
 			services.Configure<SendGridOptions>(Configuration.GetSection("Services:SendGrid"));
 		}
 
