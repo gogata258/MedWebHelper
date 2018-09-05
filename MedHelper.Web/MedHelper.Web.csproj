@@ -15,6 +15,8 @@
 		<Deterministic>False</Deterministic>
 		<TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
 		<UserSecretsId>be92cd6b-33e4-4cd8-b890-1b8458bb1b59</UserSecretsId>
+		<Configurations>Debug;Release;Web Debug</Configurations>
+		<Platforms>AnyCPU;x64</Platforms>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -24,9 +26,31 @@
 		<DefineConstants>DEBUG;TRACE</DefineConstants>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+		<PlatformTarget>x64</PlatformTarget>
+		<Optimize>false</Optimize>
+		<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
 		<DefineConstants></DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+		<DefineConstants />
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Web Debug|AnyCPU'">
+		<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+		<DefineConstants />
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Web Debug|x64'">
+		<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+		<DefineConstants />
 	</PropertyGroup>
 
 	<ItemGroup>
