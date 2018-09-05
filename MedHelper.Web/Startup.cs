@@ -12,7 +12,6 @@ namespace MedHelper.Web
 	using Data;
 	using Data.Models;
 	using Extensions;
-	using Microsoft.Extensions.Configuration.AzureKeyVault;
 	using Services.Admin;
 	using Services.Admin.Interfaces;
 	using Services.Doctor;
@@ -101,7 +100,6 @@ namespace MedHelper.Web
 			services.AddTransient<IDoctorFacilityService, DoctorFacilityService>();
 			services.AddTransient<IPersonnelExamService, PersonnelExamService>();
 			services.AddSingleton<IEmailSender, SendGridService>();
-			services.AddSingleton<IKeyVaultSecretManager, DefaultKeyVaultSecretManager>();
 			services.Configure<SendGridOptions>(Configuration.GetSection("Services:SendGrid"));
 		}
 
