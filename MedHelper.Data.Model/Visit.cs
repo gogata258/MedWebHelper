@@ -2,9 +2,7 @@
 
 namespace MedHelper.Data.Models
 {
-	using Contracts;
-
-	public class Visit : TDatabaseObject
+	public class Visit
 	{
 		public Visit(string patientId, DateTime startTime, DateTime endTime, string statusId)
 		{

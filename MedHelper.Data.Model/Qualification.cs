@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 namespace MedHelper.Data.Models
 {
-	using Contracts;
 	using Common.Attributes.Validation;
 
-	public class Qualification : TDatabaseObject
+	public class Qualification
 	{
 		private Qualification() => Users = new List<User>();
 		public Qualification(string name) : base()

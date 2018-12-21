@@ -3,9 +3,7 @@ using System.Collections.Generic;
 
 namespace MedHelper.Data.Models
 {
-	using Contracts;
-
-	public class ExamStatus : TDatabaseObject
+	public class ExamStatus
 	{
 		private ExamStatus() => Exams = new List<Exam>();
 		public ExamStatus(string status) : base() => Status = status ?? throw new ArgumentNullException(nameof(status));

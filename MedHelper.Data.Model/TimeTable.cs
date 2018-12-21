@@ -2,9 +2,7 @@
 
 namespace MedHelper.Data.Models
 {
-	using Contracts;
-
-	public class TimeTable : TDatabaseObject
+	public class TimeTable
 	{
 		public TimeTable() => Visits = new List<Visit>();
 		public string Id { get; set; }

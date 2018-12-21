@@ -3,9 +3,8 @@ using System.Collections.Generic;
 namespace MedHelper.Data.Models
 {
 	using Common.Attributes.Validation;
-	using Contracts;
 
-	public class Facility : TDatabaseObject
+	public class Facility
 	{
 		private Facility()
 		{
