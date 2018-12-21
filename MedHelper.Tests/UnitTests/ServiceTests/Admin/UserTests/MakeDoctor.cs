@@ -25,7 +25,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			string qualificationId = Guid.NewGuid().ToString();
 			string roleId = Guid.NewGuid().ToString();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			await dbContext.Users.AddAsync(new User("TestName1", "TestUserName1", "user1@test.com", DateTime.Now) { Id = userId });
 			await dbContext.Qualification.AddAsync(new Qualification("TestQualification") { Id = qualificationId });
@@ -45,7 +45,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			string qualificationId = Guid.NewGuid().ToString();
 			string roleId = Guid.NewGuid().ToString();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			await dbContext.Qualification.AddAsync(new Qualification("TestQualification") { Id = qualificationId });
 			await dbContext.Roles.AddAsync(new IdentityRole(Roles.DOCTOR) { Id = roleId });

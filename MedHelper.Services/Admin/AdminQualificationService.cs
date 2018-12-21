@@ -6,52 +6,16 @@ using System.Threading.Tasks;
 namespace MedHelper.Services.Admin
 {
 	using Abstracts;
+	using Common.Constants;
 	using Data;
 	using Data.Models;
 	using Interfaces;
-	using MedHelper.Common.Constants;
-	using Services.Models.Admin.BindingModels;
 	using Services.Models.Admin.ViewModels;
-	public class AdminQualificationService : ServiceBase, IAdminQualificationService
+	public class AdminQualificationService : ServiceBase<Qualification>, IAdminQualificationService
 	{
-		public AdminQualificationService(MedContext dbContext, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager) : base(dbContext, userManager, roleManager, signInManager)
-		{
-		}
-		public async Task AddAsync(QualificationCreateBindingModel model)
-		{
-			Qualification qualification;
-			if (!Exists(model.Name))
-			{
-				qualification = Mapper.Map<Qualification>(model);
-				qualification.NameNormalized = qualification.Name.ToUpperInvariant();
-				await DbContext.Qualification.AddAsync(qualification);
-			}
-			else
-			{
-				qualification = DbContext.Qualification.First(q => q.NameNormalized == model.Name.ToUpper());
-				qualification.IsDeleted = false;
-			}
-			await DbContext.SaveChangesAsync();
-		}
+		public AdminQualificationService(MedContext dbContext, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager)
+			: base(dbContext, userManager, roleManager, signInManager) { }
 
-		public IEnumerable<QualificationConciseViewModel> All()
-		{
-			IEnumerable<QualificationConciseViewModel> items = Mapper.Map<IEnumerable<QualificationConciseViewModel>>(DbContext.Qualification.Where(q => q.IsDeleted == false));
-			foreach (QualificationConciseViewModel item in items)
-				item.Doctors = DbContext.Qualification.Include(x => x.Users).FirstOrDefaultAsync(x => x.Id == item.Id).Result.Users.Count;
-			return items;
-		}
-		public async Task DeleteAsync(string id)
-		{
-			Qualification foundItem = await DbContext.Qualification.FindAsync(id);
-			if (foundItem is Qualification qualification
-				&& qualification.NameNormalized != Qualifications.PERSONNEL.ToUpper())
-			{
-				qualification.IsDeleted = true;
-				await DbContext.SaveChangesAsync();
-			}
-		}
-		private bool Exists(string name) => DbContext.Qualification.Any(x => x.NameNormalized == name.ToUpper());
 		public async Task<IEnumerable<QualificationPersonnelViewModel>> GetAllPersonnelAsync(string id)
 		{
 			var model = new List<QualificationPersonnelViewModel>();
@@ -59,7 +23,6 @@ namespace MedHelper.Services.Admin
 			model.ForEach(m => m.QualificationId = id);
 			return model;
 		}
-
 		public async Task<Dictionary<string, string>> GetQualificationsListAsync()
 		{
 			var model = new Dictionary<string, string>();

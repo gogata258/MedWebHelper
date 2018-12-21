@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
+
 namespace MedHelper.Services.Doctor
 {
 	using Abstracts;
@@ -13,7 +15,7 @@ namespace MedHelper.Services.Doctor
 	using Interfaces;
 	using Models.Doctor.ComboModels;
 	using Models.Doctor.ViewModels;
-	public class DoctorVisitService : ServiceBase, IDoctorVisitService
+	public class DoctorVisitService : ServiceBase<Visit>, IDoctorVisitService
 	{
 		public DoctorVisitService(MedContext dbContext, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager) : base(dbContext, userManager, roleManager, signInManager)
 		{

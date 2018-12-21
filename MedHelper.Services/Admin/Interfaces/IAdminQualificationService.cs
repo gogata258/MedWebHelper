@@ -2,13 +2,11 @@
 using System.Threading.Tasks;
 namespace MedHelper.Services.Admin.Interfaces
 {
-	using Services.Models.Admin.BindingModels;
+	using Data.Models;
+	using Services.Abstracts.Contracts;
 	using Services.Models.Admin.ViewModels;
-	public interface IAdminQualificationService
+	public interface IAdminQualificationService : IServiceBase<Qualification>
 	{
-		IEnumerable<QualificationConciseViewModel> All();
-		Task AddAsync(QualificationCreateBindingModel model);
-		Task DeleteAsync(string id);
 		Task<Dictionary<string, string>> GetQualificationsListAsync();
 		Task<IEnumerable<QualificationPersonnelViewModel>> GetAllPersonnelAsync(string id);
 		Task RemoveFromQualificationAsync(string id);

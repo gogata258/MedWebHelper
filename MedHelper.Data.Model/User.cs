@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+
 namespace MedHelper.Data.Models
 {
 	using Common.Attributes.Validation;
+
 	public class User : IdentityUser
 	{
 		public User()

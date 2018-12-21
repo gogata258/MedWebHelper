@@ -3,7 +3,9 @@ using System.Collections.Generic;
 namespace MedHelper.Data.Models
 {
 	using Common.Attributes.Validation;
-	public class Facility
+	using Contracts;
+
+	public class Facility : TDatabaseObject
 	{
 		private Facility()
 		{
@@ -16,7 +18,6 @@ namespace MedHelper.Data.Models
 			OpeningTime = openingTime;
 			ClosingTime = closingTime;
 		}
-
 		public string Id { get; set; }
 		[StringLengthValidation]
 		public string Name { get; set; }

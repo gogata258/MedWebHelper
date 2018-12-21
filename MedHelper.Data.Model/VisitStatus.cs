@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+
 namespace MedHelper.Data.Models
 {
-	public class VisitStatus
+	using Contracts;
+
+	public class VisitStatus : TDatabaseObject
 	{
 		private VisitStatus() => Visits = new List<Visit>();
 		public VisitStatus(string status) : base() => Status = status ?? throw new ArgumentNullException(nameof(status));

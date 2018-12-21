@@ -2,7 +2,9 @@
 
 namespace MedHelper.Data.Models
 {
-	public class News
+	using Contracts;
+
+	public class News : TDatabaseObject
 	{
 		public News(string title, string content)
 		{

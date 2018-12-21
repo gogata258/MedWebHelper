@@ -2,14 +2,12 @@
 using System.Threading.Tasks;
 namespace MedHelper.Services.Admin.Interfaces
 {
-	using Models.Admin.BindingModels;
+	using Abstracts.Contracts;
+	using Data.Models;
 	using Models.Admin.ComboModels;
 	using Models.Admin.ViewModels;
-	public interface IAdminFacilityService
+	public interface IAdminFacilityService : IServiceBase<Facility>
 	{
-		IEnumerable<FacilityConciseViewModel> All();
-		Task AddAsync(FacilityCreateBindingModel model);
-		Task DeleteAsync(string id);
 		bool Exists(string name);
 		Task AddPersonnelAsync(AddPersonnelModel model);
 		Task RemoveFromPersonnelAsync(string id);

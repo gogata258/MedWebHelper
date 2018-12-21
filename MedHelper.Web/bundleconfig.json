@@ -1,10 +1,10 @@
 ﻿[
 	{
 		"outputFileName": "wwwroot/css/site.min.css",
-		"inputFiles": [
-			"wwwroot/css/site.css",
-			"wwwroot/css/color.css"
-		]
+    "inputFiles": [
+      "wwwroot/css/site.css",
+      "wwwroot/css/color.css"
+    ]
 	},
 	{
 		"outputFileName": "wwwroot/js/site.min.js",

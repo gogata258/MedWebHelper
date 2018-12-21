@@ -41,7 +41,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			await dbContext.UserRoles.AddAsync(new IdentityUserRole<string>() { UserId = USER_ID, RoleId = ROLE_DOCTOR_ID });
 			await dbContext.SaveChangesAsync();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			await service.FireAsync(USER_ID);
 
@@ -72,7 +72,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			await dbContext.UserRoles.AddAsync(new IdentityUserRole<string>() { UserId = USER_ID, RoleId = ROLE_PERSONNEL_ID });
 			await dbContext.SaveChangesAsync();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			await service.FireAsync(USER_ID);
 
@@ -86,7 +86,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "user@test.com", DateTime.Now) { Id = USER_ID });
 			await dbContext.SaveChangesAsync();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			await service.FireAsync(USER_ID);
 
@@ -105,7 +105,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 				);
 			await dbContext.SaveChangesAsync();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			await service.FireAsync(USER_ID);
 

@@ -1,8 +1,11 @@
 ﻿using System;
+
 namespace MedHelper.Data.Models
 {
 	using Common.Attributes.Validation;
-	public class Exam
+	using Contracts;
+
+	public class Exam : TDatabaseObject
 	{
 		private Exam() { }
 		public Exam(string note, string facilityId, Visit visit, string patientId)

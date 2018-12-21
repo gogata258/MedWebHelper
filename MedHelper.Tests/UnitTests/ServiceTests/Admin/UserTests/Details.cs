@@ -25,7 +25,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "user@test.com", DateTime.Now) { Id = USER_ID });
 			await dbContext.SaveChangesAsync();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			UserDetailsViewModel userDetails = await service.DetailsAsync(USER_ID);
 			User foundUser = await dbContext.Users.FindAsync(USER_ID);
@@ -56,7 +56,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			await dbContext.UserRoles.AddAsync(new IdentityUserRole<string>() { UserId = USER_ID, RoleId = dbContext.Roles.First(r => r.NormalizedName == Roles.PERSONNEL.ToUpperInvariant()).Id });
 			await dbContext.SaveChangesAsync();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			UserDetailsViewModel userDetails = await service.DetailsAsync(USER_ID);
 			User foundUser = await dbContext.Users.FindAsync(USER_ID);
@@ -85,7 +85,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "user@test.com", DateTime.Now) { Id = USER_ID, TwoFactorEnabled = true });
 			await dbContext.SaveChangesAsync();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			UserDetailsViewModel userDetails = await service.DetailsAsync(USER_ID);
 			User foundUser = await dbContext.Users.FindAsync(USER_ID);
@@ -114,7 +114,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "user@test.com", DateTime.Now) { Id = USER_ID, EmailConfirmed = true });
 			await dbContext.SaveChangesAsync();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			UserDetailsViewModel userDetails = await service.DetailsAsync(USER_ID);
 			User foundUser = await dbContext.Users.FindAsync(USER_ID);
@@ -144,7 +144,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			await dbContext.UserRoles.AddAsync(new IdentityUserRole<string>() { UserId = USER_ID, RoleId = dbContext.Roles.First(r => r.NormalizedName == Roles.DOCTOR.ToUpperInvariant()).Id });
 			await dbContext.SaveChangesAsync();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			UserDetailsViewModel userDetails = await service.DetailsAsync(USER_ID);
 			User foundUser = await dbContext.Users.FindAsync(USER_ID);
@@ -174,7 +174,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			await dbContext.UserRoles.AddAsync(new IdentityUserRole<string>() { UserId = USER_ID, RoleId = dbContext.Roles.First(r => r.NormalizedName == Roles.ADMIN.ToUpperInvariant()).Id });
 			await dbContext.SaveChangesAsync();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			UserDetailsViewModel userDetails = await service.DetailsAsync(USER_ID);
 			User foundUser = await dbContext.Users.FindAsync(USER_ID);
@@ -200,7 +200,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 		{
 			string USER_ID = Guid.NewGuid().ToString();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			await service.DetailsAsync(USER_ID);
 

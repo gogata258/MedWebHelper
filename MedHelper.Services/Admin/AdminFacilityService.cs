@@ -11,47 +11,16 @@ namespace MedHelper.Services.Admin
 	using Data;
 	using Data.Models;
 	using Interfaces;
-	using Server.Interfaces;
-	using Services.Models.Admin.BindingModels;
-	using Services.Models.Admin.ComboModels;
-	using Services.Models.Admin.ViewModels;
-	public class AdminFacilityService : ServiceBase, IAdminFacilityService
+	using Models.Admin.ComboModels;
+	using Models.Admin.ViewModels;
+	public class AdminFacilityService : ServiceBase<Facility>, IAdminFacilityService
 	{
-		private readonly IServerNewsService newsService;
-		public AdminFacilityService(MedContext dbContext, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IServerNewsService newsService) : base(dbContext, userManager, roleManager, signInManager) => this.newsService = newsService;
+		public AdminFacilityService(MedContext dbContext, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager)
+			: base(dbContext, userManager, roleManager, signInManager) { }
 
-		public IEnumerable<FacilityConciseViewModel> All()
-			=> Mapper.Map<IEnumerable<FacilityConciseViewModel>>(DbContext.Facilities
-				.Include(f => f.Operators)
-				.Where(f => f.IsDeleted == false));
 
-		public async Task AddAsync(FacilityCreateBindingModel model)
-		{
-			Facility facility;
-			if (!Exists(model.Name))
-			{
-				facility = Mapper.Map<Facility>(model);
-				facility.NameNormalized = facility.Name.ToUpperInvariant();
-				await DbContext.Facilities.AddAsync(facility);
-			}
-			else
-			{
-				facility = DbContext.Facilities.First(f => f.NameNormalized == model.Name.ToUpper());
-				facility.IsDeleted = false;
-			}
-			await DbContext.SaveChangesAsync();
-			await newsService.AddNewsAsync(NewsTemplates.ADD_FACILITY_TITLE(facility.Name), NewsTemplates.ADD_FACILITY_CONTENT(facility.Name));
-		}
-		public async Task DeleteAsync(string id)
-		{
-			if ((await DbContext.Facilities.FindAsync(id)) is Facility foundFacility)
-			{
-				foundFacility.IsDeleted = true;
-				await newsService.AddNewsAsync(NewsTemplates.REMOVE_FACILITY_TITLE(foundFacility.Name), NewsTemplates.REMOVE_FACILITY_CONTENT(foundFacility.Name));
-				await DbContext.SaveChangesAsync();
-			}
-		}
 		public bool Exists(string name) => DbContext.Facilities.Any(x => x.NameNormalized == name.ToUpper());
+
 		public async Task AddPersonnelAsync(AddPersonnelModel model)
 		{
 			foreach (string userId in model.PersonnelIds)

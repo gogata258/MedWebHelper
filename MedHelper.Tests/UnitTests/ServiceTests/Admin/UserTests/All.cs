@@ -29,7 +29,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			await dbContext.Users.AddAsync(new User("TestName1", "TestUserName1", "user1@test.com", DateTime.Now) { Id = USER_ID, QualificationId = QUALIFICATION_ID });
 			await dbContext.SaveChangesAsync();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			IEnumerable<UserConciseViewModel> results = await service.AllAsync(new ClaimsPrincipal());
 
@@ -55,7 +55,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 				new User("TestName3", "TestUserName3", "user3@test.com", DateTime.Now));
 			await dbContext.SaveChangesAsync();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			IEnumerable<UserConciseViewModel> results = await service.AllAsync(new ClaimsPrincipal());
 
@@ -66,7 +66,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 		[TestMethod]
 		public async Task All_WithNone_ReturnEmptyCollection()
 		{
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			IEnumerable<UserConciseViewModel> results = await service.AllAsync(new ClaimsPrincipal());
 
