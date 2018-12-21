@@ -1,31 +1,20 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using System.Threading.Tasks;
-
 namespace MedHelper.Services.Identity
 {
+	using Abstracts;
 	using Data;
 	using Data.Models;
 	using Interfaces;
 	using Models.Identity.BindingModel;
-
-	public class IdentityUserService : IIdentityUserService
+	public class IdentityUserService : ServiceBase, IIdentityUserService
 	{
-		public MedContext MedContext { get; private set; }
-		public UserManager<User> UserManager { get; private set; }
-		public RoleManager<IdentityRole> RoleManager { get; private set; }
-		public SignInManager<User> SignInManager { get; private set; }
-
-		public IdentityUserService(MedContext medContext, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager)
+		public IdentityUserService(MedContext dbContext, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager) 
+			: base(dbContext, userManager, roleManager, signInManager)
 		{
-			MedContext = medContext;
-			UserManager = userManager;
-			RoleManager = roleManager;
-			SignInManager = signInManager;
 		}
-
 		public async Task<string> GetUserUsernameAsync(string email)
 		{
 			User foundUser = await DbContext.Users.FirstOrDefaultAsync(u => u.NormalizedEmail == email.ToUpperInvariant());
