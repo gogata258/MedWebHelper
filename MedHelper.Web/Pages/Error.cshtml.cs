@@ -8,8 +8,6 @@ namespace MedHelper.Web.Pages
 	{
 		public string RequestId { get; set; }
 		public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-
-		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public void OnGet(Exception ex) => RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
 	}
 }

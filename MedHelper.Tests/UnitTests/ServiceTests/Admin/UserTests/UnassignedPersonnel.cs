@@ -39,7 +39,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 				);
 			await dbContext.SaveChangesAsync();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			Dictionary<string, string> collection = await service.UnassignedPersonnelAsync();
 
@@ -50,7 +50,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 		[TestMethod]
 		public async Task UnassignedPersonnel_None_ReturnZero()
 		{
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			Dictionary<string, string> collection = await service.UnassignedPersonnelAsync();
 

@@ -67,17 +67,19 @@ namespace MedHelper.Web
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 		}
 
-		private void SetupOAuth(IServiceCollection services) => services.AddAuthentication()
-				.AddFacebook(o =>
-				{
-					o.AppId = Configuration["Services:Facebook:AppId"];
-					o.AppSecret = Configuration["Services:Facebook:AppSecret"];
-				})
-				.AddGoogle(o =>
-				{
-					o.ClientId = Configuration["Services:Google:ClientId"];
-					o.ClientSecret = Configuration["Services:Google:ClientSecret"];
-				});
+		private void SetupOAuth(IServiceCollection services)
+		{			
+			//services.AddAuthentication().AddFacebook(o =>
+			//	{
+			//		o.AppId = Configuration["Services:Facebook:AppId"];
+			//		o.AppSecret = Configuration["Services:Facebook:AppSecret"];
+			//	})
+			//	.AddGoogle(o =>
+			//	{
+			//		o.ClientId = Configuration["Services:Google:ClientId"];
+			//		o.ClientSecret = Configuration["Services:Google:ClientSecret"];
+			//	});
+	}
 
 		private void RegisterGlobalServices(IServiceCollection services)
 		{
@@ -109,7 +111,6 @@ namespace MedHelper.Web
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
-				app.UseDatabaseErrorPage();
 			}
 			else
 			{

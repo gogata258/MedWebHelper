@@ -21,7 +21,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "user@test.com", DateTime.Now) { Id = USER_ID, TwoFactorEnabled = true });
 			await dbContext.SaveChangesAsync();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			await service.Remove2FaAsync(USER_ID);
 
@@ -35,7 +35,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "user@test.com", DateTime.Now) { Id = USER_ID, TwoFactorEnabled = false });
 			await dbContext.SaveChangesAsync();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			await service.Remove2FaAsync(USER_ID);
 
@@ -46,7 +46,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 		{
 			string USER_ID = Guid.NewGuid().ToString();
 
-			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IEmailSender>().Object, new Mock<IServerNewsService>().Object);
+			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			await service.Remove2FaAsync(USER_ID);
 

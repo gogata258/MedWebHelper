@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
@@ -10,15 +9,8 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 	using Services.Identity.Interfaces;
 	public class TwoFactorAuthenticationModel : PageModel
 	{
-		private const string AuthenicatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}";
-
 		private readonly IIdentityUserService userService;
-		private readonly ILogger<TwoFactorAuthenticationModel> logger;
-		public TwoFactorAuthenticationModel(IIdentityUserService userService, ILogger<TwoFactorAuthenticationModel> logger)
-		{
-			this.userService = userService ?? throw new ArgumentNullException(nameof(userService));
-			this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
-		}
+		public TwoFactorAuthenticationModel(IIdentityUserService userService) => this.userService = userService ?? throw new ArgumentNullException(nameof(userService));
 
 		[BindProperty]
 		public bool Is2faEnabled { get; set; }

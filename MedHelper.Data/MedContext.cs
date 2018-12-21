@@ -8,7 +8,7 @@ namespace MedHelper.Data
 	public class MedContext : IdentityDbContext<User>
 	{
 #if DEBUG
-		private const string CONNECTION_STRING = "Server=tcp:envelopeddevil.database.windows.net,1433;Initial Catalog=MedHelperDb_Debug;Persist Security Info=False;User ID=TestUser2;Password=Password_Test123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+		private const string CONNECTION_STRING = "Server=localhost;Initial Catalog=MedHelperDb_Debug;Integrated Security=True;";
 #else
 		private const string CONNECTION_STRING = "Server=tcp:envelopeddevil.database.windows.net,1433;Initial Catalog=MedHelperDb;Persist Security Info=False;User ID=TestUser2;Password=Password_Test123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 #endif

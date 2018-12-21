@@ -19,13 +19,9 @@ namespace MedHelper.Services.Admin
 
 	public class AdminUserService : ServiceBase, IAdminUserService
 	{
-		private readonly IEmailSender emailSender;
 		private readonly IServerNewsService newsService;
-		public AdminUserService(MedContext dbContext, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IEmailSender emailSender, IServerNewsService newsService) : base(dbContext, userManager, roleManager, signInManager)
-		{
-			this.emailSender = emailSender;
-			this.newsService = newsService;
-		}
+		public AdminUserService(MedContext dbContext, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IServerNewsService newsService) 
+			: base(dbContext, userManager, roleManager, signInManager) => this.newsService = newsService;
 
 		public async Task<IEnumerable<UserConciseViewModel>> AllAsync(ClaimsPrincipal currentUser)
 		{

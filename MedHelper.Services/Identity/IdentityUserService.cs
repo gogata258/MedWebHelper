@@ -11,7 +11,8 @@ namespace MedHelper.Services.Identity
 	using Models.Identity.BindingModel;
 	public class IdentityUserService : ServiceBase, IIdentityUserService
 	{
-		public IdentityUserService(MedContext dbContext, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager) : base(dbContext, userManager, roleManager, signInManager)
+		public IdentityUserService(MedContext dbContext, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager) 
+			: base(dbContext, userManager, roleManager, signInManager)
 		{
 		}
 		public async Task<string> GetUserUsernameAsync(string email)
