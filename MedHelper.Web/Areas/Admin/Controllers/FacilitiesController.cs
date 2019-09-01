@@ -19,13 +19,13 @@ namespace MedHelper.Web.Areas.Admin.Controllers
 			this.userService = userService ?? throw new ArgumentNullException(nameof(userService));
 		}
 		[HttpGet]
-		public IActionResult All() => View(facilityService.All());
+		public IActionResult All() => View(facilityService.All( ));
 		[HttpGet]
-		public IActionResult Add() => View();
+		public IActionResult Add() => View( );
 		[HttpPost]
 		public async Task<IActionResult> Add(FacilityCreateBindingModel model)
 		{
-			if (!ModelState.IsValid) return View();
+			if (!ModelState.IsValid) return View( );
 			await facilityService.AddAsync(model);
 			return RedirectToAction(VIEW_ALL);
 		}

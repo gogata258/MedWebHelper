@@ -14,8 +14,8 @@ namespace MedHelper.Web.Pages
 		public IEnumerable<NewsCardViewModel> News { get; set; }
 		public IActionResult OnGet()
 		{
-			News = newsService.GetLatestNews();
-			return Page();
+			News = newsService.GetLatestNews( );
+			return Page( );
 		}
 	}
 }

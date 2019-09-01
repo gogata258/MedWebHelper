@@ -26,9 +26,9 @@ namespace MedHelper.Services.Personnel
 				? DbContext.Exams
 					.Include(e => e.Status)
 					.Include(e => e.Patient)
-					.Where(e => e.FacilityId == foundUser.FacilityId && e.Status.Status != ExamStatuses.CANCELED && e.Status.Status != ExamStatuses.DONE).ToList()
-					.Select(e => Mapper.Map<PersonnelExamConciseViewModel>(e)).ToList()
-				: new List<PersonnelExamConciseViewModel>();
+					.Where(e => e.FacilityId == foundUser.FacilityId && e.Status.Status != ExamStatuses.CANCELED && e.Status.Status != ExamStatuses.DONE).ToList( )
+					.Select(e => Mapper.Map<PersonnelExamConciseViewModel>(e)).ToList( )
+				: new List<PersonnelExamConciseViewModel>( );
 		public PublishExamModel DetailsAsync(string id) => Mapper.Map<PublishExamModel>(DbContext.Exams.Include(e => e.Patient).First(v => v.Id == id));
 		public async Task PublishAsync(PublishExamModel model)
 		{
@@ -36,7 +36,7 @@ namespace MedHelper.Services.Personnel
 			foundExam.Note = model.Note;
 			foundExam.StatusId = DbContext.ExamStatuses.First(es => es.Status == ExamStatuses.DONE).Id;
 			foundExam.ResultsOn = DateTime.Now;
-			await DbContext.SaveChangesAsync();
+			await DbContext.SaveChangesAsync( );
 		}
 
 		public async Task ScreenAsync(string id)
@@ -44,7 +44,7 @@ namespace MedHelper.Services.Personnel
 			Exam foundExam = await DbContext.Exams.FindAsync(id);
 			foundExam.StatusId = DbContext.ExamStatuses.First(es => es.Status == ExamStatuses.ATTENDED).Id;
 			foundExam.AttendedOn = DateTime.Now;
-			await DbContext.SaveChangesAsync();
+			await DbContext.SaveChangesAsync( );
 		}
 	}
 }

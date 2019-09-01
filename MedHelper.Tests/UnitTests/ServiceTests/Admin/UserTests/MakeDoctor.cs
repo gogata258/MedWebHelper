@@ -5,7 +5,6 @@ using MedHelper.Services.Models.Admin.ComboModels;
 using MedHelper.Services.Server.Interfaces;
 using MedHelper.Tests.UnitTests.ServiceTests.Abstracts;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -30,9 +29,9 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			await dbContext.Users.AddAsync(new User("TestName1", "TestUserName1", "user1@test.com", DateTime.Now) { Id = userId });
 			await dbContext.Qualification.AddAsync(new Qualification("TestQualification") { Id = qualificationId });
 			await dbContext.Roles.AddAsync(new IdentityRole(Roles.DOCTOR) { Id = roleId });
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
-			await service.MakeDoctorAsync(new AddDoctorModel() { HasStandardWorkTime = true, DoctorId = userId, QualificationId = qualificationId });
+			await service.MakeDoctorAsync(new AddDoctorModel( ) { HasStandardWorkTime = true, DoctorId = userId, QualificationId = qualificationId });
 
 			Assert.IsNotNull(dbContext.Users.Find(userId).QualificationId);
 			Assert.AreEqual(qualificationId, dbContext.Users.Find(userId).QualificationId);
@@ -49,9 +48,9 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 
 			await dbContext.Qualification.AddAsync(new Qualification("TestQualification") { Id = qualificationId });
 			await dbContext.Roles.AddAsync(new IdentityRole(Roles.DOCTOR) { Id = roleId });
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
-			await service.MakeDoctorAsync(new AddDoctorModel() { HasStandardWorkTime = true, DoctorId = userId, QualificationId = qualificationId });
+			await service.MakeDoctorAsync(new AddDoctorModel( ) { HasStandardWorkTime = true, DoctorId = userId, QualificationId = qualificationId });
 
 			Assert.IsNull(dbContext.Users.Find(userId));
 			Assert.AreEqual(0, dbContext.Qualification.Include(q => q.Users).First(q => q.Id == qualificationId).Users.Count);

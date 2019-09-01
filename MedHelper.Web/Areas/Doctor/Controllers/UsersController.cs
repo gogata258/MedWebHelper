@@ -6,8 +6,8 @@ namespace MedHelper.Web.Areas.Doctor.Controllers
 	public class UsersController : DoctorController
 	{
 		[HttpGet]
-		public IActionResult Visits(string id) => View();
+		public IActionResult Visits() => View( );
 		[HttpGet]
-		public IActionResult Exams(string id) => View();
+		public IActionResult Exams() => View( );
 	}
 }

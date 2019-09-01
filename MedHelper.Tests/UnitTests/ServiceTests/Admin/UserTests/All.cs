@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -27,14 +26,14 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 
 			await dbContext.Qualification.AddAsync(new Qualification("TestQualification") { Id = QUALIFICATION_ID });
 			await dbContext.Users.AddAsync(new User("TestName1", "TestUserName1", "user1@test.com", DateTime.Now) { Id = USER_ID, QualificationId = QUALIFICATION_ID });
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			IEnumerable<UserConciseViewModel> results = await service.AllAsync(new ClaimsPrincipal());
 
 			Assert.IsNotNull(results);
-			Assert.AreEqual(1, results.ToList().Count);
+			Assert.AreEqual(1, results.ToList( ).Count);
 
 			UserConciseViewModel foundModel = results.First();
 			User foundUser = dbContext.Users.Include(u => u.Qualification).First(u => u.Id == USER_ID);
@@ -53,14 +52,14 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 				new User("TestName1", "TestUserName1", "user1@test.com", DateTime.Now),
 				new User("TestName2", "TestUserName2", "user2@test.com", DateTime.Now),
 				new User("TestName3", "TestUserName3", "user3@test.com", DateTime.Now));
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
 			IEnumerable<UserConciseViewModel> results = await service.AllAsync(new ClaimsPrincipal());
 
 			Assert.IsNotNull(results);
-			Assert.AreEqual(3, results.ToList().Count);
+			Assert.AreEqual(3, results.ToList( ).Count);
 		}
 
 		[TestMethod]
@@ -71,7 +70,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			IEnumerable<UserConciseViewModel> results = await service.AllAsync(new ClaimsPrincipal());
 
 			Assert.IsNotNull(results);
-			Assert.AreEqual(0, results.ToList().Count);
+			Assert.AreEqual(0, results.ToList( ).Count);
 		}
 	}
 }

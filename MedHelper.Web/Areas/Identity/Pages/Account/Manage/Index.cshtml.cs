@@ -33,12 +33,12 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 
 			DetailsForm = userService.MapUserDetails(user);
 
-			return Page();
+			return Page( );
 		}
 
 		public async Task<IActionResult> OnPostAsync()
 		{
-			if (!ModelState.IsValid) return Page();
+			if (!ModelState.IsValid) return Page( );
 
 			if (await userService.UserManager.GetUserAsync(User) is null) return NotFound(Messages.NOTFOUND_USER_ID(userService.UserManager.GetUserId(User)));
 
@@ -47,12 +47,12 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 			await userService.SignInManager.RefreshSignInAsync(user);
 
 			StatusMessage = Messages.MESSAGE_USER_UPDATEDPROFILE;
-			return RedirectToPage();
+			return RedirectToPage( );
 		}
 
 		public async Task<IActionResult> OnPostSendVerificationEmailAsync()
 		{
-			if (!ModelState.IsValid) return Page();
+			if (!ModelState.IsValid) return Page( );
 
 			User user = await userService.UserManager.GetUserAsync(User);
 			if (user is null) return NotFound(Messages.NOTFOUND_USER_ID(userService.UserManager.GetUserId(User)));
@@ -65,7 +65,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 			await emailSender.SendEmailAsync(email, "Confirm your email", $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
 			StatusMessage = Messages.MESSAGE_VERIFICATIONEMAIL_SENT;
-			return RedirectToPage();
+			return RedirectToPage( );
 		}
 	}
 }

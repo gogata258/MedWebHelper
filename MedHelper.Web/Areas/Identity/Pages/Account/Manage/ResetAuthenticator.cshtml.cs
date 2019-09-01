@@ -23,7 +23,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 
 		public async Task<IActionResult> OnGet() => await userService.UserManager.GetUserAsync(User) == null
 				? NotFound(Messages.NOTFOUND_USER_ID(userService.UserManager.GetUserId(User)))
-				: (IActionResult)Page();
+				: (IActionResult) Page( );
 
 		public async Task<IActionResult> OnPostAsync()
 		{

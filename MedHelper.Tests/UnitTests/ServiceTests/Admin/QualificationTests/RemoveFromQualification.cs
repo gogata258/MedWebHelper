@@ -31,23 +31,23 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.QualificationTests
 			await dbContext.Qualification.AddAsync(new Qualification(QUALIFICATION_NAME)
 			{
 				IsDeleted = false,
-				NameNormalized = QUALIFICATION_NAME.ToUpperInvariant(),
-				Users = new List<User>(),
+				NameNormalized = QUALIFICATION_NAME.ToUpperInvariant( ),
+				Users = new List<User>( ),
 				Id = qualificationId
 			});
 			await dbContext.Roles.AddAsync(new IdentityRole(Roles.DOCTOR) { Id = roleIdDoctor });
 			await dbContext.Roles.AddAsync(new IdentityRole(Roles.PERSONNEL) { Id = roleIdPersonnel });
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "test@mail.com", DateTime.Now)
 			{
 				Id = userId,
 				QualificationId = qualificationId
 			});
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
-			await dbContext.UserRoles.AddAsync(new IdentityUserRole<string>() { RoleId = roleIdDoctor, UserId = userId });
-			await dbContext.SaveChangesAsync();
+			await dbContext.UserRoles.AddAsync(new IdentityUserRole<string>( ) { RoleId = roleIdDoctor, UserId = userId });
+			await dbContext.SaveChangesAsync( );
 
 			await service.RemoveFromQualificationAsync(userId);
 
@@ -70,19 +70,19 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.QualificationTests
 			await dbContext.Qualification.AddAsync(new Qualification(QUALIFICATION_NAME)
 			{
 				IsDeleted = false,
-				NameNormalized = QUALIFICATION_NAME.ToUpperInvariant(),
-				Users = new List<User>(),
+				NameNormalized = QUALIFICATION_NAME.ToUpperInvariant( ),
+				Users = new List<User>( ),
 				Id = qualificationId
 			});
 			await dbContext.Roles.AddAsync(new IdentityRole(Roles.DOCTOR) { Id = roleIdDoctor });
 			await dbContext.Roles.AddAsync(new IdentityRole(Roles.PERSONNEL) { Id = roleIdPersonnel });
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "test@mail.com", DateTime.Now)
 			{
 				Id = userId,
 			});
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			await service.RemoveFromQualificationAsync(userId);
 

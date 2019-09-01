@@ -9,7 +9,6 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 	using MedHelper.Services.Admin;
 	using MedHelper.Services.Server.Interfaces;
 	using Microsoft.AspNetCore.Identity;
-	using Microsoft.AspNetCore.Identity.UI.Services;
 	using Moq;
 	using System;
 	using System.Collections.Generic;
@@ -33,11 +32,11 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 				new User("TestName3", "TestUserName3", "user3@test.com", DateTime.Now) { QualificationId = QUALIFICATION_ID, Id = USER_ID_3 }
 				);
 			await dbContext.UserRoles.AddRangeAsync(
-				new IdentityUserRole<string>() { UserId = USER_ID_1, RoleId = ROLE_ID },
-				new IdentityUserRole<string>() { UserId = USER_ID_2, RoleId = ROLE_ID },
-				new IdentityUserRole<string>() { UserId = USER_ID_3, RoleId = ROLE_ID }
+				new IdentityUserRole<string>( ) { UserId = USER_ID_1, RoleId = ROLE_ID },
+				new IdentityUserRole<string>( ) { UserId = USER_ID_2, RoleId = ROLE_ID },
+				new IdentityUserRole<string>( ) { UserId = USER_ID_3, RoleId = ROLE_ID }
 				);
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
@@ -61,9 +60,9 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 		[TestInitialize]
 		public async Task Init()
 		{
-			await dbContext.Roles.AddAsync(new IdentityRole(Roles.PERSONNEL) { Id = ROLE_ID, NormalizedName = Roles.PERSONNEL.ToUpperInvariant() });
-			await dbContext.Qualification.AddAsync(new Qualification(Roles.PERSONNEL) { Id = QUALIFICATION_ID, NameNormalized = Roles.PERSONNEL.ToUpperInvariant() });
-			await dbContext.SaveChangesAsync();
+			await dbContext.Roles.AddAsync(new IdentityRole(Roles.PERSONNEL) { Id = ROLE_ID, NormalizedName = Roles.PERSONNEL.ToUpperInvariant( ) });
+			await dbContext.Qualification.AddAsync(new Qualification(Roles.PERSONNEL) { Id = QUALIFICATION_ID, NameNormalized = Roles.PERSONNEL.ToUpperInvariant( ) });
+			await dbContext.SaveChangesAsync( );
 		}
 	}
 }

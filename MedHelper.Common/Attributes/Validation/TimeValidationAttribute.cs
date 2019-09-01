@@ -4,7 +4,7 @@ namespace MedHelper.Common.Attributes.Validation
 {
 	using Constants;
 	[AttributeUsage(AttributeTargets.Property)]
-	public class TimeValidationAttribute : ValidationAttribute
+	public sealed class TimeValidationAttribute : ValidationAttribute
 	{
 		public TimeValidationAttribute(string startTimeProperty) => StartTimePropName = startTimeProperty;
 		private string StartTimePropName { get; set; }
@@ -12,7 +12,7 @@ namespace MedHelper.Common.Attributes.Validation
 		{
 			var laterDate = (DateTime)value;
 			var earlierDate = (DateTime)validationContext.ObjectType.GetProperty(StartTimePropName).GetValue(validationContext.ObjectInstance, null);
-			return (laterDate.Subtract(earlierDate) > new TimeSpan(0)) ? ValidationResult.Success : new ValidationResult(string.Format(Validation.Errors.TIME_IS_LATER, earlierDate.ToShortTimeString(), laterDate.ToShortTimeString()));
+			return (laterDate.Subtract(earlierDate) > new TimeSpan(0)) ? ValidationResult.Success : new ValidationResult(string.Format(Validation.Errors.TIME_IS_LATER, earlierDate.ToShortTimeString( ), laterDate.ToShortTimeString( )));
 		}
 	}
 }

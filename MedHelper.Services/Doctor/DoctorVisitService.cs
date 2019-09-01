@@ -25,7 +25,7 @@ namespace MedHelper.Services.Doctor
 			Visit foundVisit = DbContext.Visits.Find(model.VisitId);
 			foundVisit.StatusId = DbContext.VisitStatuses.First(vs => vs.Status == VisitStatuses.ATTENDED).Id;
 			foundVisit.Note = model.Note;
-			await DbContext.SaveChangesAsync();
+			await DbContext.SaveChangesAsync( );
 		}
 
 		public PatientVisitDetailsViewModel GetDetails(string id) => Mapper.Map<PatientVisitDetailsViewModel>(DbContext.Visits
@@ -39,8 +39,8 @@ namespace MedHelper.Services.Doctor
 			.First(u => u.Id == id) is User foundUser
 			? Mapper.Map<IEnumerable<PatientVisitConciseViewModel>>(foundUser.Visits
 				.Where(v => v.Status.Status == VisitStatuses.ATTENDED || v.Status.Status == VisitStatuses.PENDING)
-				.ToList())
-			: new List<PatientVisitConciseViewModel>();
+				.ToList( ))
+			: new List<PatientVisitConciseViewModel>( );
 
 		public UserExaminationModel GetVisit(string id) => Mapper.Map<UserExaminationModel>(DbContext.Visits
 			.Include(v => v.Patient)
@@ -51,6 +51,6 @@ namespace MedHelper.Services.Doctor
 					.Include(u => u.TimeTable).ThenInclude(tt => tt.Visits).ThenInclude(v => v.Patient)
 					.Include(u => u.TimeTable).ThenInclude(tt => tt.Visits).ThenInclude(v => v.Status)
 					.FirstOrDefault(u => u.Id == foundUser.Id).TimeTable.Visits.Where(v => v.Status.Status == VisitStatuses.PENDING))
-				: new List<DoctorVisitConciseViewModel>();
+				: new List<DoctorVisitConciseViewModel>( );
 	}
 }

@@ -37,12 +37,12 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account
 			if (user is null) throw new InvalidOperationException(Messages.EXCEPTION_2FA_LOADUSER_FAILED);
 
 			ReturnUrl = returnUrl;
-			return Page();
+			return Page( );
 		}
 
 		public async Task<IActionResult> OnPostAsync(string returnUrl = null)
 		{
-			if (!ModelState.IsValid) return Page();
+			if (!ModelState.IsValid) return Page( );
 
 			User user = await userService.SignInManager.GetTwoFactorAuthenticationUserAsync();
 			if (user is null) throw new InvalidOperationException(Messages.EXCEPTION_2FA_LOADUSER_FAILED);
@@ -64,7 +64,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account
 			{
 				logger.LogWarning(Messages.LOGGER_WARN_USER_WRONGRECOVERYCODE, user.Id);
 				ModelState.AddModelError(string.Empty, Messages.MODELSTATEERROR_INVALIDRECOVERYCODE);
-				return Page();
+				return Page( );
 			}
 		}
 	}

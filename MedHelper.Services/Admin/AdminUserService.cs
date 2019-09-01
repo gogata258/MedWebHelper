@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,13 +19,13 @@ namespace MedHelper.Services.Admin
 	public class AdminUserService : ServiceBase, IAdminUserService
 	{
 		private readonly IServerNewsService newsService;
-		public AdminUserService(MedContext dbContext, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IServerNewsService newsService) 
+		public AdminUserService(MedContext dbContext, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IServerNewsService newsService)
 			: base(dbContext, userManager, roleManager, signInManager) => this.newsService = newsService;
 
 		public async Task<IEnumerable<UserConciseViewModel>> AllAsync(ClaimsPrincipal currentUser)
 		{
 			var items = new List<UserConciseViewModel>();
-			foreach (UserConciseViewModel oldItem in DbContext.Users.Include(u => u.Qualification).AsEnumerable().Select(u => Mapper.Map<UserConciseViewModel>(u)))
+			foreach (UserConciseViewModel oldItem in DbContext.Users.Include(u => u.Qualification).AsEnumerable( ).Select(u => Mapper.Map<UserConciseViewModel>(u)))
 			{
 				User user = await DbContext.Users.FindAsync(oldItem.Id);
 				UserConciseViewModel newItem = oldItem;
@@ -43,7 +42,7 @@ namespace MedHelper.Services.Admin
 			if (await DbContext.Users.FindAsync(model.DoctorId) is User foundUser)
 			{
 				IdentityRole foundRole = await DbContext.Roles.FirstOrDefaultAsync(x => x.Name == Roles.DOCTOR);
-				await DbContext.UserRoles.AddAsync(new IdentityUserRole<string>() { RoleId = foundRole.Id, UserId = foundUser.Id });
+				await DbContext.UserRoles.AddAsync(new IdentityUserRole<string>( ) { RoleId = foundRole.Id, UserId = foundUser.Id });
 				foundUser.PositionedSince = DateTime.Now;
 				foundUser.QualificationId = model.QualificationId;
 				foundUser.HasStandardWorkTime = model.HasStandardWorkTime;
@@ -62,21 +61,21 @@ namespace MedHelper.Services.Admin
 					foundUser.BreakEnd = model.BreakEnd;
 				}
 				await newsService.AddNewsAsync(NewsTemplates.ADD_DOCTOR_TITLE(foundUser.FullName), NewsTemplates.ADD_DOCTOR_CONTENT(foundUser.FullName, DbContext.Qualification.Find(model.QualificationId).Name));
-				await DbContext.SaveChangesAsync();
+				await DbContext.SaveChangesAsync( );
 			}
 		}
 		public async Task FireAsync(string userId)
 		{
 			if (await DbContext.Users.FindAsync(userId) is User foundUser)
 				if (DbContext.UserRoles.Any(ur => ur.UserId == foundUser.Id
-					&& ur.RoleId == DbContext.Roles.FirstOrDefault(r => r.NormalizedName == Roles.DOCTOR.ToUpperInvariant()).Id))
+					&& ur.RoleId == DbContext.Roles.FirstOrDefault(r => r.NormalizedName == Roles.DOCTOR.ToUpperInvariant( )).Id))
 				{
 					IdentityRole foundRole = await DbContext.Roles.FirstOrDefaultAsync(x => x.Name == Roles.DOCTOR);
 					DbContext.UserRoles.Remove(await DbContext.UserRoles.FirstOrDefaultAsync(x => x.RoleId == foundRole.Id && x.UserId == foundUser.Id));
 					foundUser.QualificationId = null;
 					await newsService.AddNewsAsync(NewsTemplates.REMOVE_DOCTOR_TITLE(foundUser.FullName), NewsTemplates.REMOVE_DOCTOR_CONTENT(foundUser.FullName));
 				}
-				else if (DbContext.UserRoles.Any(ur => ur.UserId == foundUser.Id && ur.RoleId == DbContext.Roles.FirstOrDefault(r => r.NormalizedName == Roles.PERSONNEL.ToUpperInvariant()).Id))
+				else if (DbContext.UserRoles.Any(ur => ur.UserId == foundUser.Id && ur.RoleId == DbContext.Roles.FirstOrDefault(r => r.NormalizedName == Roles.PERSONNEL.ToUpperInvariant( )).Id))
 				{
 					IdentityRole foundRole = await DbContext.Roles.FirstOrDefaultAsync(x => x.Name == Roles.PERSONNEL);
 					DbContext.UserRoles.Remove(await DbContext.UserRoles.FirstOrDefaultAsync(x => x.RoleId == foundRole.Id && x.UserId == foundUser.Id));
@@ -84,14 +83,14 @@ namespace MedHelper.Services.Admin
 					foundUser.FacilityId = null;
 					await newsService.AddNewsAsync(NewsTemplates.REMOVE_PERSONNEL_TITLE(foundUser.FullName), NewsTemplates.REMOVE_PERSONNEL_CONTENT(foundUser.FullName));
 				}
-			await DbContext.SaveChangesAsync();
+			await DbContext.SaveChangesAsync( );
 		}
 		public async Task Remove2FaAsync(string userId)
 		{
 			if (await DbContext.Users.FindAsync(userId) is User foundUser)
 			{
 				foundUser.TwoFactorEnabled = false;
-				await DbContext.SaveChangesAsync();
+				await DbContext.SaveChangesAsync( );
 			}
 		}
 		public async Task<UserDetailsViewModel> DetailsAsync(string userId)
@@ -130,12 +129,12 @@ namespace MedHelper.Services.Admin
 		{
 			User foundUser = await DbContext.Users.FindAsync(id);
 			IdentityRole foundRole = await DbContext.Roles.FirstOrDefaultAsync(x => x.NormalizedName == Roles.PERSONNEL.ToUpper());
-			await DbContext.UserRoles.AddAsync(new IdentityUserRole<string>() { RoleId = foundRole.Id, UserId = foundUser.Id });
+			await DbContext.UserRoles.AddAsync(new IdentityUserRole<string>( ) { RoleId = foundRole.Id, UserId = foundUser.Id });
 			foundUser.PositionedSince = DateTime.Now;
-			foundUser.QualificationId = DbContext.Qualification.First(q => q.NameNormalized == Qualifications.PERSONNEL.ToUpper()).Id;
+			foundUser.QualificationId = DbContext.Qualification.First(q => q.NameNormalized == Qualifications.PERSONNEL.ToUpper( )).Id;
 			foundUser.HasStandardWorkTime = true;
 			await newsService.AddNewsAsync(NewsTemplates.ADD_PERSONNEL_TITLE(foundUser.FullName), NewsTemplates.ADD_PERSONNEL_CONTENT(foundUser.FullName));
-			await DbContext.SaveChangesAsync();
+			await DbContext.SaveChangesAsync( );
 		}
 	}
 }

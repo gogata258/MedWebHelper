@@ -30,34 +30,34 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.FacilityTests
 			await dbContext.Facilities.AddAsync(new Facility("TestFacility", DateTime.Now, DateTime.Now)
 			{
 				Id = facilityId,
-				Operators = new List<User>(),
+				Operators = new List<User>( ),
 				IsDeleted = false,
-				NameNormalized = "TestFacility".ToUpperInvariant()
+				NameNormalized = "TestFacility".ToUpperInvariant( )
 			});
 			await dbContext.Roles.AddAsync(new IdentityRole(Roles.PERSONNEL)
 			{
-				NormalizedName = Roles.PERSONNEL.ToUpperInvariant()
+				NormalizedName = Roles.PERSONNEL.ToUpperInvariant( )
 			});
 			await dbContext.Qualification.AddAsync(new Qualification(Roles.PERSONNEL)
 			{
-				NameNormalized = Roles.PERSONNEL.ToUpperInvariant()
+				NameNormalized = Roles.PERSONNEL.ToUpperInvariant( )
 			});
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "test@mail.com", DateTime.Now)
 			{
-				QualificationId = dbContext.Qualification.First(q => q.NameNormalized == Roles.PERSONNEL.ToUpperInvariant()).Id,
+				QualificationId = dbContext.Qualification.First(q => q.NameNormalized == Roles.PERSONNEL.ToUpperInvariant( )).Id,
 				Id = userId
 			});
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
-			await dbContext.UserRoles.AddAsync(new IdentityUserRole<string>()
+			await dbContext.UserRoles.AddAsync(new IdentityUserRole<string>( )
 			{
-				RoleId = dbContext.Roles.First(f => f.NormalizedName == Roles.PERSONNEL.ToUpperInvariant()).Id,
+				RoleId = dbContext.Roles.First(f => f.NormalizedName == Roles.PERSONNEL.ToUpperInvariant( )).Id,
 				UserId = dbContext.Users.First(f => f.FullName == "TestName").Id
 			});
 
-			await service.AddPersonnelAsync(new AddPersonnelModel()
+			await service.AddPersonnelAsync(new AddPersonnelModel( )
 			{
 				FacilityId = facilityId,
 				PersonnelIds = new[] { userId },
@@ -82,35 +82,35 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.FacilityTests
 			await dbContext.Facilities.AddAsync(new Facility(FACILITY_NAME, DateTime.Now, DateTime.Now)
 			{
 				Id = facilityId,
-				Operators = new List<User>(),
+				Operators = new List<User>( ),
 				IsDeleted = false,
-				NameNormalized = FACILITY_NAME.ToUpperInvariant()
+				NameNormalized = FACILITY_NAME.ToUpperInvariant( )
 			});
 			await dbContext.Roles.AddAsync(new IdentityRole(Roles.PERSONNEL)
 			{
-				NormalizedName = Roles.PERSONNEL.ToUpperInvariant()
+				NormalizedName = Roles.PERSONNEL.ToUpperInvariant( )
 			});
 			await dbContext.Qualification.AddAsync(new Qualification(TEST_QUALIFICATION_NAME)
 			{
-				NameNormalized = TEST_QUALIFICATION_NAME.ToUpperInvariant()
+				NameNormalized = TEST_QUALIFICATION_NAME.ToUpperInvariant( )
 			});
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			await dbContext.Users.AddAsync(new User(USER_FULLNAME, "TestUserName", "test@mail.com", DateTime.Now)
 			{
-				QualificationId = dbContext.Qualification.First(q => q.NameNormalized == TEST_QUALIFICATION_NAME.ToUpperInvariant()).Id,
+				QualificationId = dbContext.Qualification.First(q => q.NameNormalized == TEST_QUALIFICATION_NAME.ToUpperInvariant( )).Id,
 				Id = userId
 			});
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
-			await dbContext.UserRoles.AddAsync(new IdentityUserRole<string>()
+			await dbContext.UserRoles.AddAsync(new IdentityUserRole<string>( )
 			{
-				RoleId = dbContext.Roles.First(f => f.NormalizedName == Roles.PERSONNEL.ToUpperInvariant()).Id,
+				RoleId = dbContext.Roles.First(f => f.NormalizedName == Roles.PERSONNEL.ToUpperInvariant( )).Id,
 				UserId = dbContext.Users.First(f => f.FullName == USER_FULLNAME).Id
 			});
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
-			await service.AddPersonnelAsync(new AddPersonnelModel()
+			await service.AddPersonnelAsync(new AddPersonnelModel( )
 			{
 				FacilityId = facilityId,
 				PersonnelIds = new[] { userId },
@@ -131,15 +131,15 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.FacilityTests
 			await dbContext.Facilities.AddAsync(new Facility(FACILITY_NAME, DateTime.Now, DateTime.Now)
 			{
 				Id = facilityId,
-				Operators = new List<User>(),
+				Operators = new List<User>( ),
 				IsDeleted = false,
-				NameNormalized = FACILITY_NAME.ToUpperInvariant()
+				NameNormalized = FACILITY_NAME.ToUpperInvariant( )
 			});
 
-			await service.AddPersonnelAsync(new AddPersonnelModel()
+			await service.AddPersonnelAsync(new AddPersonnelModel( )
 			{
 				FacilityId = facilityId,
-				PersonnelIds = new List<string>().ToArray()
+				PersonnelIds = new List<string>( ).ToArray( )
 			});
 
 			Assert.AreEqual(0, dbContext.Facilities.Include(f => f.Operators).First(f => f.Id == facilityId).Operators.Count);

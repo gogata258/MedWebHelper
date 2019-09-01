@@ -15,7 +15,7 @@ namespace MedHelper.Services.Doctor
 		public IDictionary<string, string> FacilitiesList()
 		{
 			var facilities = new Dictionary<string, string>();
-			DbContext.Facilities.ToList().ForEach(f => facilities.Add(f.Id, f.Name));
+			DbContext.Facilities.ToList( ).ForEach(f => facilities.Add(f.Id, f.Name));
 			return facilities;
 		}
 	}

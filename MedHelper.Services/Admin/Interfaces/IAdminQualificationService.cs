@@ -2,9 +2,8 @@
 using System.Threading.Tasks;
 namespace MedHelper.Services.Admin.Interfaces
 {
-	using Data.Models;
-    using Services.Models.Admin.BindingModels;
-    using Services.Models.Admin.ViewModels;
+	using Services.Models.Admin.BindingModels;
+	using Services.Models.Admin.ViewModels;
 	public interface IAdminQualificationService
 	{
 		IEnumerable<QualificationConciseViewModel> All();

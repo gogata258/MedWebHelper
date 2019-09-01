@@ -17,10 +17,7 @@ namespace MedHelper.Data.Migrations
 					NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
 					ConcurrencyStamp = table.Column<string>(nullable: true)
 				},
-				constraints: table =>
-				{
-					table.PrimaryKey("PK_AspNetRoles", x => x.Id);
-				});
+				constraints: table => table.PrimaryKey("PK_AspNetRoles", x => x.Id));
 
 			migrationBuilder.CreateTable(
 				name: "Facilities",
@@ -32,10 +29,7 @@ namespace MedHelper.Data.Migrations
 					OpeningTime = table.Column<DateTime>(nullable: false),
 					ClosingTime = table.Column<DateTime>(nullable: false)
 				},
-				constraints: table =>
-				{
-					table.PrimaryKey("PK_Facilities", x => x.Id);
-				});
+				constraints: table => table.PrimaryKey("PK_Facilities", x => x.Id));
 
 			migrationBuilder.CreateTable(
 				name: "Qualification",
@@ -45,10 +39,7 @@ namespace MedHelper.Data.Migrations
 					Name = table.Column<string>(nullable: false),
 					NameNormalized = table.Column<string>(nullable: true)
 				},
-				constraints: table =>
-				{
-					table.PrimaryKey("PK_Qualification", x => x.Id);
-				});
+				constraints: table => table.PrimaryKey("PK_Qualification", x => x.Id));
 
 			migrationBuilder.CreateTable(
 				name: "VisitStatuses",
@@ -57,10 +48,7 @@ namespace MedHelper.Data.Migrations
 					Id = table.Column<string>(nullable: false, defaultValue: "newid()"),
 					Status = table.Column<string>(nullable: false)
 				},
-				constraints: table =>
-				{
-					table.PrimaryKey("PK_VisitStatuses", x => x.Id);
-				});
+				constraints: table => table.PrimaryKey("PK_VisitStatuses", x => x.Id));
 
 			migrationBuilder.CreateTable(
 				name: "AspNetRoleClaims",

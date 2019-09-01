@@ -23,7 +23,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.FacilityTests
 			await dbContext.Facilities.AddAsync(new Facility("Test2", DateTime.Now, DateTime.Now));
 			await dbContext.Facilities.AddAsync(new Facility("Test3", DateTime.Now, DateTime.Now));
 
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			var service = new AdminFacilityService(dbContext, userManager, roleManager, signInManager,
 				new Mock<IServerNewsService>().Object);
@@ -31,7 +31,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.FacilityTests
 			IEnumerable<FacilityConciseViewModel> results = service.All();
 
 			Assert.IsNotNull(results);
-			Assert.AreEqual(3, results.ToList().Count);
+			Assert.AreEqual(3, results.ToList( ).Count);
 		}
 
 		[TestMethod]
@@ -43,7 +43,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.FacilityTests
 			IEnumerable<FacilityConciseViewModel> results = service.All();
 
 			Assert.IsNotNull(results);
-			Assert.AreEqual(0, results.ToList().Count);
+			Assert.AreEqual(0, results.ToList( ).Count);
 		}
 	}
 }

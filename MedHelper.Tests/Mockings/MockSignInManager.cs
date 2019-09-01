@@ -11,11 +11,11 @@ namespace MedHelper.Tests.Mockings
 	public static class MockSignInManager
 	{
 		public static SignInManager<User> GetObject() => new SignInManager<User>(
-			MockUserManager.GetObject(),
-			new Mock<IHttpContextAccessor>().Object,
-			new Mock<IUserClaimsPrincipalFactory<User>>().Object,
-			new Mock<IOptions<IdentityOptions>>().Object,
-			new Mock<ILogger<SignInManager<User>>>().Object,
-			new Mock<IAuthenticationSchemeProvider>().Object);
+			MockUserManager.GetObject( ),
+			new Mock<IHttpContextAccessor>( ).Object,
+			new Mock<IUserClaimsPrincipalFactory<User>>( ).Object,
+			new Mock<IOptions<IdentityOptions>>( ).Object,
+			new Mock<ILogger<SignInManager<User>>>( ).Object,
+			new Mock<IAuthenticationSchemeProvider>( ).Object);
 	}
 }

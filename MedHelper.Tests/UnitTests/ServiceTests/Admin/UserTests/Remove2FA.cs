@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Threading.Tasks;
@@ -19,7 +18,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			string USER_ID = Guid.NewGuid().ToString();
 
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "user@test.com", DateTime.Now) { Id = USER_ID, TwoFactorEnabled = true });
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
@@ -33,7 +32,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			string USER_ID = Guid.NewGuid().ToString();
 
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "user@test.com", DateTime.Now) { Id = USER_ID, TwoFactorEnabled = false });
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 

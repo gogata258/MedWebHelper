@@ -19,7 +19,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 		private readonly ILogger<EnableAuthenticatorModel> logger;
 		private readonly UrlEncoder urlEncoder;
 
-		private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
+		private const string AUTHENTICATORURIFORMAT = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
 
 		public EnableAuthenticatorModel(IIdentityUserService userService, ILogger<EnableAuthenticatorModel> logger, UrlEncoder urlEncoder)
 		{
@@ -31,7 +31,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 		public string AuthenticatorUri { get; set; }
 
 		[TempData]
-		public string[] RecoveryCodes { get; set; }
+		public IEnumerable<string> RecoveryCodes { get; set; }
 		[TempData]
 		public string StatusMessage { get; set; }
 		[BindProperty]
@@ -47,7 +47,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 			if (user is null) return NotFound(Messages.NOTFOUND_USER_ID(userService.UserManager.GetUserId(User)));
 
 			await LoadSharedKeyAndQrCodeUriAsync(user);
-			return Page();
+			return Page( );
 		}
 
 		public async Task<IActionResult> OnPostAsync()
@@ -58,7 +58,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 			if (!ModelState.IsValid)
 			{
 				await LoadSharedKeyAndQrCodeUriAsync(user);
-				return Page();
+				return Page( );
 			}
 
 			// Strip spaces and hypens
@@ -70,7 +70,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 			{
 				ModelState.AddModelError("Input.Code", Messages.MODELSTATEERROR_INVALID2FACODE);
 				await LoadSharedKeyAndQrCodeUriAsync(user);
-				return Page();
+				return Page( );
 			}
 
 			await userService.UserManager.SetTwoFactorEnabledAsync(user, true);
@@ -82,7 +82,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 			if (await userService.UserManager.CountRecoveryCodesAsync(user) == 0)
 			{
 				IEnumerable<string> recoveryCodes = await userService.UserManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
-				RecoveryCodes = recoveryCodes.ToArray();
+				RecoveryCodes = recoveryCodes.ToArray( );
 				return RedirectToPage("./ShowRecoveryCodes");
 			}
 			else
@@ -118,11 +118,11 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 			}
 			if (currentPosition < unformattedKey.Length) result.Append(unformattedKey.Substring(currentPosition));
 
-			return result.ToString().ToLowerInvariant();
+			return result.ToString( ).ToLowerInvariant( );
 		}
 
 		private string GenerateQrCodeUri(string username, string unformattedKey) => string.Format(
-				AuthenticatorUriFormat,
+				AUTHENTICATORURIFORMAT,
 				urlEncoder.Encode("MedHelper"),
 				urlEncoder.Encode(username),
 				unformattedKey);

@@ -25,37 +25,37 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.FacilityTests
 			await dbContext.Facilities.AddAsync(new Facility("TestFacility", DateTime.Now, DateTime.Now)
 			{
 				Id = facilityId,
-				Operators = new List<User>(),
+				Operators = new List<User>( ),
 				IsDeleted = false,
-				NameNormalized = "TestFacility".ToUpperInvariant()
+				NameNormalized = "TestFacility".ToUpperInvariant( )
 			});
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			await dbContext.Users.AddRangeAsync(
 				new User("TestName1", "TestUserName1", "test1@mail.com", DateTime.Now)
 				{
 					FacilityId = facilityId,
-					Id = Guid.NewGuid().ToString()
+					Id = Guid.NewGuid( ).ToString( )
 				},
 				new User("TestName2", "TestUserName2", "test2@mail.com", DateTime.Now)
 				{
 					FacilityId = facilityId,
-					Id = Guid.NewGuid().ToString()
+					Id = Guid.NewGuid( ).ToString( )
 				},
 				new User("TestName3", "TestUserName3", "test3@mail.com", DateTime.Now)
 				{
 					FacilityId = facilityId,
-					Id = Guid.NewGuid().ToString()
+					Id = Guid.NewGuid( ).ToString( )
 				},
 				new User("TestName4", "TestUserName4", "test4@mail.com", DateTime.Now)
 				{
 					FacilityId = facilityId,
-					Id = Guid.NewGuid().ToString()
+					Id = Guid.NewGuid( ).ToString( )
 				}
 			);
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
-			Assert.AreEqual(4, (await service.GetPersonnelAsync(facilityId)).Count());
+			Assert.AreEqual(4, (await service.GetPersonnelAsync(facilityId)).Count( ));
 		}
 
 		[TestMethod]
@@ -69,13 +69,13 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.FacilityTests
 			await dbContext.Facilities.AddAsync(new Facility("TestFacility", DateTime.Now, DateTime.Now)
 			{
 				Id = facilityId,
-				Operators = new List<User>(),
+				Operators = new List<User>( ),
 				IsDeleted = false,
-				NameNormalized = "TestFacility".ToUpperInvariant()
+				NameNormalized = "TestFacility".ToUpperInvariant( )
 			});
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
-			Assert.AreEqual(0, (await service.GetPersonnelAsync(facilityId)).Count());
+			Assert.AreEqual(0, (await service.GetPersonnelAsync(facilityId)).Count( ));
 		}
 	}
 }

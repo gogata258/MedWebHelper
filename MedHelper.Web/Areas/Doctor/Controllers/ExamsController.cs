@@ -16,7 +16,7 @@ namespace MedHelper.Web.Areas.Doctor.Controllers
 			this.facilityService = facilityService ?? throw new ArgumentNullException(nameof(facilityService));
 		}
 		[HttpGet]
-		public IActionResult IssueExam(string id) => View(examService.GetInfo(id, facilityService.FacilitiesList()));
+		public IActionResult IssueExam(string id) => View(examService.GetInfo(id, facilityService.FacilitiesList( )));
 		[HttpPost]
 		public async Task<IActionResult> IssueExam(ExamBindingModel model) => await examService.IssueExam(model)
 				? RedirectToPage("/Success")

@@ -37,7 +37,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 			var personalData = new Dictionary<string, string>();
 			IEnumerable<PropertyInfo> personalDataProps = typeof(User).GetProperties().Where(prop => Attribute.IsDefined(prop, typeof(PersonalDataAttribute)));
 			foreach (PropertyInfo p in personalDataProps)
-				personalData.Add(p.Name, p.GetValue(user)?.ToString() ?? "null");
+				personalData.Add(p.Name, p.GetValue(user)?.ToString( ) ?? "null");
 
 			Response.Headers.Add("Content-Disposition", "attachment; filename=PersonalData.json");
 			return new FileContentResult(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(personalData)), "text/json");

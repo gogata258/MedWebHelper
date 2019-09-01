@@ -23,7 +23,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.FacilityTests
 			string itemId = Guid.NewGuid().ToString();
 
 			await dbContext.Facilities.AddAsync(new Facility("Test", DateTime.Now, DateTime.Now) { Id = itemId });
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			await service.DeleteAsync(itemId);
 

@@ -24,7 +24,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.QualificationTests
 			string itemId = Guid.NewGuid().ToString();
 
 			await dbContext.Qualification.AddAsync(new Qualification("TestQualification") { Id = itemId });
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			await service.DeleteAsync(itemId);
 
@@ -39,7 +39,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.QualificationTests
 			string itemId = Guid.NewGuid().ToString();
 
 			await dbContext.Qualification.AddAsync(new Qualification(Roles.PERSONNEL) { Id = itemId });
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			await service.DeleteAsync(itemId);
 

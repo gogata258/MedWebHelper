@@ -24,12 +24,12 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 			User user = await userService.UserManager.GetUserAsync(User);
 			return user is null
 				? NotFound(Messages.NOTFOUND_USER_ID(userService.UserManager.GetUserId(User)))
-				: await userService.UserManager.HasPasswordAsync(user) ? RedirectToPage("./ChangePassword") : (IActionResult)Page();
+				: await userService.UserManager.HasPasswordAsync(user) ? RedirectToPage("./ChangePassword") : (IActionResult) Page( );
 		}
 
 		public async Task<IActionResult> OnPostAsync()
 		{
-			if (!ModelState.IsValid) return Page();
+			if (!ModelState.IsValid) return Page( );
 
 			User user = await userService.UserManager.GetUserAsync(User);
 			if (user is null) return NotFound(Messages.NOTFOUND_USER_ID(userService.UserManager.GetUserId(User)));
@@ -39,12 +39,12 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 			{
 				foreach (IdentityError error in result.Errors)
 					ModelState.AddModelError(string.Empty, error.Description);
-				return Page();
+				return Page( );
 			}
 
 			await userService.SignInManager.RefreshSignInAsync(user);
 			StatusMessage = Messages.MESSAGE_USER_PASSWORDCHANGED;
-			return RedirectToPage();
+			return RedirectToPage( );
 		}
 	}
 }

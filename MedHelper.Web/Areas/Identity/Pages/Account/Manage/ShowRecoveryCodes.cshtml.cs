@@ -7,6 +7,6 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 		[TempData]
 		public string StatusMessage { get; set; }
 
-		public IActionResult OnGet() => Page();
+		public IActionResult OnGet() => Page( );
 	}
 }

@@ -47,7 +47,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account
 				return RedirectToPage("./ForgotPasswordConfirmation");
 			}
 
-			return Page();
+			return Page( );
 		}
 	}
 }

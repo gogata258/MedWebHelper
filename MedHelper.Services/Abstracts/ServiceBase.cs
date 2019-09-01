@@ -16,7 +16,7 @@ namespace MedHelper.Services.Abstracts
 			UserManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
 			RoleManager = roleManager ?? throw new ArgumentNullException(nameof(roleManager));
 			SignInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
-			Mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfile>()));
+			Mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfile>( )));
 		}
 
 		public MedContext DbContext { get; private set; }

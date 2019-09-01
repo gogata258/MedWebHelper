@@ -12,10 +12,7 @@ namespace MedHelper.Data.Migrations
 					Title = table.Column<string>(nullable: false),
 					Content = table.Column<string>(nullable: false)
 				},
-				constraints: table =>
-				{
-					table.PrimaryKey("PK_News", x => x.Id);
-				});
+				constraints: table => table.PrimaryKey("PK_News", x => x.Id));
 
 		protected override void Down(MigrationBuilder migrationBuilder) => migrationBuilder.DropTable(
 				name: "News");

@@ -7,12 +7,12 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Abstracts
 	using Mockings;
 	public abstract class TestBase
 	{
-		public TestBase()
+		protected TestBase()
 		{
-			dbContext = MockDbContext.GetObject();
-			userManager = MockUserManager.GetObject();
-			roleManager = MockRoleManager.GetObject();
-			signInManager = MockSignInManager.GetObject();
+			dbContext = MockDbContext.GetObject( );
+			userManager = MockUserManager.GetObject( );
+			roleManager = MockRoleManager.GetObject( );
+			signInManager = MockSignInManager.GetObject( );
 		}
 		protected MedContext dbContext;
 		protected UserManager<User> userManager;

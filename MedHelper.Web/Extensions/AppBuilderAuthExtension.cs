@@ -67,8 +67,8 @@ namespace MedHelper.Web.Extensions
 			if (adminUser is null)
 			{
 				adminUser = new User("Administrator", "admin", "admin@medhelper.com", System.DateTime.Now);
-				IdentityResult result = await manager.CreateAsync(adminUser, DEFAULT_ADMIN_PASSWORD);
-				result = await manager.AddToRolesAsync(adminUser, new List<string>() { Roles.ADMIN, Roles.USER });
+				await manager.CreateAsync(adminUser, DEFAULT_ADMIN_PASSWORD);
+				await manager.AddToRolesAsync(adminUser, new List<string>( ) { Roles.ADMIN, Roles.USER });
 			}
 		}
 		private static async Task EnsureRolesCreated(RoleManager<IdentityRole> manager)

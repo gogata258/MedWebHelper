@@ -18,9 +18,9 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.QualificationTests
 		{
 			var service = new AdminQualificationService(dbContext, userManager, roleManager, signInManager);
 
-			await service.AddAsync(new QualificationCreateBindingModel() { Name = NAME_QUALIICATION });
+			await service.AddAsync(new QualificationCreateBindingModel( ) { Name = NAME_QUALIICATION });
 
-			Assert.AreEqual(1, dbContext.Qualification.Count());
+			Assert.AreEqual(1, dbContext.Qualification.Count( ));
 		}
 
 		[TestMethod]
@@ -29,12 +29,12 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.QualificationTests
 			var service = new AdminQualificationService(dbContext, userManager, roleManager, signInManager);
 
 			await dbContext.Qualification.AddAsync(new Qualification(NAME_QUALIICATION) { IsDeleted = true });
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
-			await service.AddAsync(new QualificationCreateBindingModel() { Name = NAME_QUALIICATION });
+			await service.AddAsync(new QualificationCreateBindingModel( ) { Name = NAME_QUALIICATION });
 
-			Assert.AreEqual(1, dbContext.Qualification.Count());
-			Assert.IsFalse(dbContext.Qualification.First().IsDeleted);
+			Assert.AreEqual(1, dbContext.Qualification.Count( ));
+			Assert.IsFalse(dbContext.Qualification.First( ).IsDeleted);
 		}
 	}
 }

@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System;
 using System.Diagnostics;
 namespace MedHelper.Web.Pages
 {
@@ -7,6 +6,6 @@ namespace MedHelper.Web.Pages
 	{
 		public string RequestId { get; set; }
 		public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-		public void OnGet(Exception ex) => RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+		public void OnGet() => RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
 	}
 }

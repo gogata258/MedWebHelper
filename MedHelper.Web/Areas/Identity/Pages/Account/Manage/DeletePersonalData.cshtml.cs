@@ -30,7 +30,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 			if (user is null) return NotFound(Messages.NOTFOUND_USER_ID(userService.UserManager.GetUserId(User)));
 
 			RequirePassword = await userService.UserManager.HasPasswordAsync(user);
-			return Page();
+			return Page( );
 		}
 
 		public async Task<IActionResult> OnPostAsync()
@@ -42,13 +42,13 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 				if (!await userService.UserManager.CheckPasswordAsync(user, Password))
 				{
 					ModelState.AddModelError(string.Empty, Messages.MODELSTATEERROR_INVALIDPASSWORD);
-					return Page();
+					return Page( );
 				}
 
 			string userId = await userService.UserManager.GetUserIdAsync(user);
 			if (!(await userService.UserManager.DeleteAsync(user)).Succeeded) throw new InvalidOperationException(Messages.EXCEPTION_USER_DELETION(userId));
 
-			await userService.SignInManager.SignOutAsync();
+			await userService.SignInManager.SignOutAsync( );
 			logger.LogInformation(Messages.LOGGER_INFO_USER_DELETE, userId);
 			return Redirect("~/");
 		}

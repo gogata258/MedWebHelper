@@ -8,10 +8,10 @@ namespace MedHelper.Data.Models
 	{
 		private Facility()
 		{
-			Operators = new List<User>();
-			Exams = new List<Exam>();
+			Operators = new List<User>( );
+			Exams = new List<Exam>( );
 		}
-		public Facility(string name, DateTime openingTime, DateTime closingTime) : base()
+		public Facility(string name, DateTime openingTime, DateTime closingTime) : base( )
 		{
 			Name = name ?? throw new ArgumentNullException(nameof(name));
 			OpeningTime = openingTime;

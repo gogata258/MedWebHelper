@@ -31,7 +31,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 			IsMachineRemembered = await userService.SignInManager.IsTwoFactorClientRememberedAsync(user);
 			RecoveryCodesLeft = await userService.UserManager.CountRecoveryCodesAsync(user);
 
-			return Page();
+			return Page( );
 		}
 
 		public async Task<IActionResult> OnPost()
@@ -39,9 +39,9 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 			User user = await userService.UserManager.GetUserAsync(User);
 			if (user is null) return NotFound(Messages.NOTFOUND_USER_ID(userService.UserManager.GetUserId(User)));
 
-			await userService.SignInManager.ForgetTwoFactorClientAsync();
+			await userService.SignInManager.ForgetTwoFactorClientAsync( );
 			StatusMessage = Messages.MESSAGE_BROWSER_FORGET;
-			return RedirectToPage();
+			return RedirectToPage( );
 		}
 	}
 }

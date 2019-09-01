@@ -45,7 +45,7 @@ namespace MedHelper.Services.Doctor
 				exam.StatusId = DbContext.ExamStatuses.First(es => es.Status == ExamStatuses.PENDING).Id;
 				exam.IssuedOn = DateTime.Now;
 				v.Exam = exam;
-				await DbContext.SaveChangesAsync();
+				await DbContext.SaveChangesAsync( );
 				return true;
 			}
 			else return false;

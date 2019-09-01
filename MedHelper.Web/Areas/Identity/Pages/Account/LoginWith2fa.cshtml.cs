@@ -47,12 +47,12 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account
 
 			ReturnUrl = returnUrl;
 			RememberMe = rememberMe;
-			return Page();
+			return Page( );
 		}
 
 		public async Task<IActionResult> OnPostAsync(bool rememberMe, string returnUrl = null)
 		{
-			if (!ModelState.IsValid) return Page();
+			if (!ModelState.IsValid) return Page( );
 
 			returnUrl = returnUrl ?? Url.Content("~/");
 
@@ -77,7 +77,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account
 			{
 				logger.LogWarning(LOGGER_WARNING_USER_2FA_INVALIDATTEMPT, user.Id);
 				ModelState.AddModelError(string.Empty, MESSAGE_ERROR_INVALID_2FACODE);
-				return Page();
+				return Page( );
 			}
 		}
 	}

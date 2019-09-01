@@ -75,14 +75,14 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account
 				if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
 				{
 					DateTime.TryParse(info.Principal.FindFirstValue(ClaimTypes.DateOfBirth), out DateTime date);
-					RegisterForm = new UserExternalRegisterBindingModel()
+					RegisterForm = new UserExternalRegisterBindingModel( )
 					{
 						Email = info.Principal.FindFirstValue(ClaimTypes.Email),
 						FullName = info.Principal.FindFirstValue(ClaimTypes.Actor),
 						BirthDate = date,
 					};
 				}
-				return Page();
+				return Page( );
 			}
 		}
 
@@ -118,7 +118,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account
 
 			LoginProvider = info.LoginProvider;
 			ReturnUrl = returnUrl;
-			return Page();
+			return Page( );
 		}
 	}
 }

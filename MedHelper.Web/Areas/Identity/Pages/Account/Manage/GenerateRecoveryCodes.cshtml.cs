@@ -21,7 +21,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 		}
 
 		[TempData]
-		public string[] RecoveryCodes { get; set; }
+		public IEnumerable<string> RecoveryCodes { get; set; }
 
 		[TempData]
 		public string StatusMessage { get; set; }
@@ -33,7 +33,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 
 			if (!await userService.UserManager.GetTwoFactorEnabledAsync(user)) throw new InvalidOperationException(Messages.EXCEPTION_LOGIN_RECOVERYCODES_MISSING_2FA(await userService.UserManager.GetUserIdAsync(user)));
 
-			return Page();
+			return Page( );
 		}
 
 		public async Task<IActionResult> OnPostAsync()
@@ -44,7 +44,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 			if (!await userService.UserManager.GetTwoFactorEnabledAsync(user)) throw new InvalidOperationException(Messages.EXCEPTION_LOGIN_RECOVERYCODES_MISSING_2FA(user.Id));
 
 			IEnumerable<string> recoveryCodes = await userService.UserManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
-			RecoveryCodes = recoveryCodes.ToArray();
+			RecoveryCodes = recoveryCodes.ToArray( );
 
 			logger.LogInformation(Messages.LOGGER_INFO_USER_GENERATERECOVERYCODES(await userService.UserManager.GetUserIdAsync(user)));
 			StatusMessage = Messages.MESSAGE_USER_GENERATECODES;

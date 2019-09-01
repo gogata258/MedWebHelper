@@ -21,9 +21,9 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.QualificationTests
 				new Qualification("TestQualification2"),
 				new Qualification("TestQualification3"),
 				new Qualification("TestQualification4"));
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
-			Assert.AreEqual(4, (await service.GetQualificationsListAsync()).ToList().Count);
+			Assert.AreEqual(4, (await service.GetQualificationsListAsync( )).ToList( ).Count);
 		}
 
 		[TestMethod]
@@ -31,7 +31,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.QualificationTests
 		{
 			var service = new AdminQualificationService(dbContext, userManager, roleManager, signInManager);
 
-			Assert.AreEqual(0, (await service.GetQualificationsListAsync()).ToList().Count);
+			Assert.AreEqual(0, (await service.GetQualificationsListAsync( )).ToList( ).Count);
 		}
 	}
 }

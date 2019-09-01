@@ -8,7 +8,7 @@ namespace MedHelper.Web.Areas.Doctor.Pages
 		public IActionResult OnGet(string message)
 		{
 			ViewData["Error"] = message;
-			return Page();
+			return Page( );
 		}
 	}
 }

@@ -33,15 +33,15 @@ namespace MedHelper.Services.Admin
 			if (!Exists(model.Name))
 			{
 				facility = Mapper.Map<Facility>(model);
-				facility.NameNormalized = facility.Name.ToUpperInvariant();
+				facility.NameNormalized = facility.Name.ToUpperInvariant( );
 				await DbContext.Facilities.AddAsync(facility);
 			}
 			else
 			{
-				facility = DbContext.Facilities.First(f => f.NameNormalized == model.Name.ToUpper());
+				facility = DbContext.Facilities.First(f => f.NameNormalized == model.Name.ToUpper( ));
 				facility.IsDeleted = false;
 			}
-			await DbContext.SaveChangesAsync();
+			await DbContext.SaveChangesAsync( );
 			await newsService.AddNewsAsync(NewsTemplates.ADD_FACILITY_TITLE(facility.Name), NewsTemplates.ADD_FACILITY_CONTENT(facility.Name));
 		}
 		public async Task DeleteAsync(string id)
@@ -50,30 +50,30 @@ namespace MedHelper.Services.Admin
 			{
 				foundFacility.IsDeleted = true;
 				await newsService.AddNewsAsync(NewsTemplates.REMOVE_FACILITY_TITLE(foundFacility.Name), NewsTemplates.REMOVE_FACILITY_CONTENT(foundFacility.Name));
-				await DbContext.SaveChangesAsync();
+				await DbContext.SaveChangesAsync( );
 			}
 		}
-		public bool Exists(string name) => DbContext.Facilities.Any(x => x.NameNormalized == name.ToUpper());
+		public bool Exists(string name) => DbContext.Facilities.Any(x => x.NameNormalized == name.ToUpper( ));
 		public async Task AddPersonnelAsync(AddPersonnelModel model)
 		{
 			foreach (string userId in model.PersonnelIds)
 			{
 				User foundUser = DbContext.Users.Include(u => u.Qualification).First(u => u.Id == userId);
-				if (foundUser.Qualification.NameNormalized == Qualifications.PERSONNEL.ToUpperInvariant())
+				if (foundUser.Qualification.NameNormalized == Qualifications.PERSONNEL.ToUpperInvariant( ))
 				{
 					Facility foundFacility = DbContext.Facilities.Find(model.FacilityId);
 					foundFacility.Operators.Add(foundUser);
 					foundUser.PositionedSince = DateTime.Now;
 				}
 			}
-			await DbContext.SaveChangesAsync();
+			await DbContext.SaveChangesAsync( );
 		}
 		public async Task RemoveFromPersonnelAsync(string id)
 		{
 			if (DbContext.Users.Include(u => u.Facility).FirstOrDefault(u => u.Id == id) is User foundUser)
 			{
 				foundUser.FacilityId = null;
-				await DbContext.SaveChangesAsync();
+				await DbContext.SaveChangesAsync( );
 			}
 		}
 		public async Task<IEnumerable<FacilityPersonnelViewModel>> GetPersonnelAsync(string id)

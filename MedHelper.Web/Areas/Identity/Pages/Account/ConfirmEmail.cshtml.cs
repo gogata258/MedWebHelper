@@ -24,7 +24,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account
 			if (!(await userService.UserManager.ConfirmEmailAsync(user, code)).Succeeded)
 				throw new InvalidOperationException(string.Format(Messages.EXCEPTION_CONFIRM_EMAIL(userId)));
 
-			return Page();
+			return Page( );
 		}
 	}
 }

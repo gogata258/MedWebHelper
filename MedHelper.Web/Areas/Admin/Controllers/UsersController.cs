@@ -20,7 +20,7 @@ namespace MedHelper.Web.Areas.Admin.Controllers
 		public async Task<IActionResult> All() => View(await userService.AllAsync(User));
 		public async Task<IActionResult> Details(string id) => View(await userService.DetailsAsync(id));
 		[HttpGet]
-		public async Task<IActionResult> MakeDoctor(string id) => View(new AddDoctorModel() { DoctorId = id, Qualifications = await qualificationService.GetQualificationsListAsync() });
+		public async Task<IActionResult> MakeDoctor(string id) => View(new AddDoctorModel( ) { DoctorId = id, Qualifications = await qualificationService.GetQualificationsListAsync( ) });
 		[HttpPost]
 		public async Task<IActionResult> MakeDoctor(AddDoctorModel model)
 		{

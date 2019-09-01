@@ -5,7 +5,6 @@ using MedHelper.Services.Models.Admin.ViewModels;
 using MedHelper.Services.Server.Interfaces;
 using MedHelper.Tests.UnitTests.ServiceTests.Abstracts;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -23,7 +22,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			string USER_ID = Guid.NewGuid().ToString();
 
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "user@test.com", DateTime.Now) { Id = USER_ID });
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
@@ -53,8 +52,8 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			string USER_ID = Guid.NewGuid().ToString();
 
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "user@test.com", DateTime.Now) { Id = USER_ID });
-			await dbContext.UserRoles.AddAsync(new IdentityUserRole<string>() { UserId = USER_ID, RoleId = dbContext.Roles.First(r => r.NormalizedName == Roles.PERSONNEL.ToUpperInvariant()).Id });
-			await dbContext.SaveChangesAsync();
+			await dbContext.UserRoles.AddAsync(new IdentityUserRole<string>( ) { UserId = USER_ID, RoleId = dbContext.Roles.First(r => r.NormalizedName == Roles.PERSONNEL.ToUpperInvariant( )).Id });
+			await dbContext.SaveChangesAsync( );
 
 			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
@@ -83,7 +82,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			string USER_ID = Guid.NewGuid().ToString();
 
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "user@test.com", DateTime.Now) { Id = USER_ID, TwoFactorEnabled = true });
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
@@ -112,7 +111,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			string USER_ID = Guid.NewGuid().ToString();
 
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "user@test.com", DateTime.Now) { Id = USER_ID, EmailConfirmed = true });
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
@@ -141,8 +140,8 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			string USER_ID = Guid.NewGuid().ToString();
 
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "user@test.com", DateTime.Now) { Id = USER_ID });
-			await dbContext.UserRoles.AddAsync(new IdentityUserRole<string>() { UserId = USER_ID, RoleId = dbContext.Roles.First(r => r.NormalizedName == Roles.DOCTOR.ToUpperInvariant()).Id });
-			await dbContext.SaveChangesAsync();
+			await dbContext.UserRoles.AddAsync(new IdentityUserRole<string>( ) { UserId = USER_ID, RoleId = dbContext.Roles.First(r => r.NormalizedName == Roles.DOCTOR.ToUpperInvariant( )).Id });
+			await dbContext.SaveChangesAsync( );
 
 			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
@@ -171,8 +170,8 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 			string USER_ID = Guid.NewGuid().ToString();
 
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "user@test.com", DateTime.Now) { Id = USER_ID });
-			await dbContext.UserRoles.AddAsync(new IdentityUserRole<string>() { UserId = USER_ID, RoleId = dbContext.Roles.First(r => r.NormalizedName == Roles.ADMIN.ToUpperInvariant()).Id });
-			await dbContext.SaveChangesAsync();
+			await dbContext.UserRoles.AddAsync(new IdentityUserRole<string>( ) { UserId = USER_ID, RoleId = dbContext.Roles.First(r => r.NormalizedName == Roles.ADMIN.ToUpperInvariant( )).Id });
+			await dbContext.SaveChangesAsync( );
 
 			var service = new AdminUserService(dbContext, userManager, roleManager, signInManager, new Mock<IServerNewsService>().Object);
 
@@ -212,11 +211,11 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.UserTests
 		public async Task ClassInit()
 		{
 			await dbContext.Roles.AddRangeAsync(
-				  new IdentityRole(Roles.DOCTOR) { NormalizedName = Roles.DOCTOR.ToUpperInvariant() },
-				  new IdentityRole(Roles.PERSONNEL) { NormalizedName = Roles.PERSONNEL.ToUpperInvariant() },
-				  new IdentityRole(Roles.ADMIN) { NormalizedName = Roles.ADMIN.ToUpperInvariant() }
+				  new IdentityRole(Roles.DOCTOR) { NormalizedName = Roles.DOCTOR.ToUpperInvariant( ) },
+				  new IdentityRole(Roles.PERSONNEL) { NormalizedName = Roles.PERSONNEL.ToUpperInvariant( ) },
+				  new IdentityRole(Roles.ADMIN) { NormalizedName = Roles.ADMIN.ToUpperInvariant( ) }
 				  );
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 		}
 	}
 }

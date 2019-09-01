@@ -9,6 +9,6 @@ namespace MedHelper.Services.Models.Admin.ComboModels
 		public string FacilityId { get; set; }
 		[Display(Name = "Personnel")]
 		[Required]
-		public string[] PersonnelIds { get; set; }
+		public IEnumerable<string> PersonnelIds { get; set; }
 	}
 }

@@ -23,14 +23,14 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account
 			if (code is null) return BadRequest(Messages.BADREQUEST_PASSWORD_RESEt_CODEISNULL);
 			else
 			{
-				ResetForm = new UserPasswordResetBindingModel() { Code = code };
-				return Page();
+				ResetForm = new UserPasswordResetBindingModel( ) { Code = code };
+				return Page( );
 			}
 		}
 
 		public async Task<IActionResult> OnPostAsync()
 		{
-			if (!ModelState.IsValid) return Page();
+			if (!ModelState.IsValid) return Page( );
 
 			User user = await userService.UserManager.FindByEmailAsync(ResetForm.Email);
 			// Don't reveal that the user does not exist
@@ -42,7 +42,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account
 			foreach (Microsoft.AspNetCore.Identity.IdentityError error in result.Errors)
 				ModelState.AddModelError(string.Empty, error.Description);
 
-			return Page();
+			return Page( );
 		}
 	}
 }

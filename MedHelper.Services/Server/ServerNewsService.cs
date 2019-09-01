@@ -19,7 +19,7 @@ namespace MedHelper.Services.Server
 		public async Task AddNewsAsync(string title, string content)
 		{
 			await DbContext.News.AddAsync(new News(title, content));
-			await DbContext.SaveChangesAsync();
+			await DbContext.SaveChangesAsync( );
 		}
 
 		public IEnumerable<NewsCardViewModel> GetLatestNews() => Mapper.Map<IEnumerable<NewsCardViewModel>>(DbContext.News.OrderByDescending(n => n.Date).Take(10));

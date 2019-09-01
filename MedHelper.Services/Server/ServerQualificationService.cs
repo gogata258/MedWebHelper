@@ -20,9 +20,9 @@ namespace MedHelper.Services.Server
 			if (!Exists(name))
 			{
 				await DbContext.Qualification.AddAsync(new Qualification(name));
-				await DbContext.SaveChangesAsync();
+				await DbContext.SaveChangesAsync( );
 			}
 		}
-		private bool Exists(string name) => DbContext.Qualification.Any(q => q.NameNormalized == name.ToUpper());
+		private bool Exists(string name) => DbContext.Qualification.Any(q => q.NameNormalized == name.ToUpper( ));
 	}
 }

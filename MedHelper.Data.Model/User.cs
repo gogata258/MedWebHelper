@@ -10,16 +10,16 @@ namespace MedHelper.Data.Models
 	{
 		public User()
 		{
-			Exams = new List<Exam>();
-			Visits = new List<Visit>();
+			Exams = new List<Exam>( );
+			Visits = new List<Visit>( );
 		}
-		public User(string fullName, string username, string email, DateTime birthDate) : base()
+		public User(string fullName, string username, string email, DateTime birthDate) : base( )
 		{
 			FullName = fullName ?? throw new ArgumentNullException(nameof(fullName));
 			BirthDate = birthDate;
 			UserName = username ?? throw new ArgumentNullException(nameof(username));
 			Email = email ?? throw new ArgumentNullException(nameof(email));
-			TimeTable = new TimeTable();
+			TimeTable = new TimeTable( );
 		}
 
 		[StringLengthValidation]

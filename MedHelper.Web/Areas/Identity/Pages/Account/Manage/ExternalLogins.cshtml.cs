@@ -27,11 +27,11 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 			if (user == null) return NotFound(Messages.NOTFOUND_USER_ID(userService.UserManager.GetUserId(User)));
 
 			CurrentLogins = await userService.UserManager.GetLoginsAsync(user);
-			OtherLogins = (await userService.SignInManager.GetExternalAuthenticationSchemesAsync())
+			OtherLogins = (await userService.SignInManager.GetExternalAuthenticationSchemesAsync( ))
 				.Where(auth => CurrentLogins.All(ul => auth.Name != ul.LoginProvider))
-				.ToList();
+				.ToList( );
 			ShowRemoveButton = user.PasswordHash != null || CurrentLogins.Count > 1;
-			return Page();
+			return Page( );
 		}
 
 		public async Task<IActionResult> OnPostRemoveLoginAsync(string loginProvider, string providerKey)
@@ -44,7 +44,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 
 			await userService.SignInManager.RefreshSignInAsync(user);
 			StatusMessage = Messages.MESSAGE_LOGIN_EXTERNAL_REMOVE;
-			return RedirectToPage();
+			return RedirectToPage( );
 		}
 
 		public async Task<IActionResult> OnPostLinkLoginAsync(string provider)
@@ -72,7 +72,7 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 			await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
 			StatusMessage = Messages.MESSAGE_LOGIN_EXTERNAL_ADD;
-			return RedirectToPage();
+			return RedirectToPage( );
 		}
 	}
 }

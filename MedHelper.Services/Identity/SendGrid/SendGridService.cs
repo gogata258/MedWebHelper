@@ -19,7 +19,7 @@ namespace MedHelper.Services.Identity.SendGrid
 			SendGridMessage msg = MailHelper.CreateSingleEmail(from, to, subject, htmlMessage, htmlMessage);
 			Response response = await client.SendEmailAsync(msg);
 			HttpStatusCode code = response.StatusCode;
-			string body = await response.Body.ReadAsStringAsync();
+			await response.Body.ReadAsStringAsync( );
 		}
 	}
 }

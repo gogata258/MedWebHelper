@@ -11,13 +11,13 @@ namespace MedHelper.Web.Areas.Admin.Controllers
 		private readonly IAdminQualificationService qualificationService;
 		public QualificationsController(IAdminQualificationService qualificationService) => this.qualificationService = qualificationService ?? throw new ArgumentNullException(nameof(qualificationService));
 		[HttpGet]
-		public IActionResult All() => View(qualificationService.All());
+		public IActionResult All() => View(qualificationService.All( ));
 		[HttpGet]
-		public IActionResult Add() => View();
+		public IActionResult Add() => View( );
 		[HttpPost]
 		public async Task<IActionResult> Add(QualificationCreateBindingModel model)
 		{
-			if (!ModelState.IsValid) return View();
+			if (!ModelState.IsValid) return View( );
 			await qualificationService.AddAsync(model);
 			return RedirectToAction("All");
 		}

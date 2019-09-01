@@ -8,6 +8,6 @@ namespace MedHelper.Web.Areas.Admin.Abstracts
 	[Authorize(Roles = Roles.ADMIN)]
 	public abstract class AdminController : Controller
 	{
-		public AdminController() => ViewData["Error"] = string.Empty;
+		protected AdminController() => ViewData["Error"] = string.Empty;
 	}
 }

@@ -4,7 +4,7 @@ namespace MedHelper.Data.Models
 {
 	public class TimeTable
 	{
-		public TimeTable() => Visits = new List<Visit>();
+		public TimeTable() => Visits = new List<Visit>( );
 		public string Id { get; set; }
 		public User User { get; set; }
 		public string UserId { get; set; }

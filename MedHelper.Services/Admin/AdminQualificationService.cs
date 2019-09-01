@@ -25,15 +25,15 @@ namespace MedHelper.Services.Admin
 			if (!Exists(model.Name))
 			{
 				qualification = Mapper.Map<Qualification>(model);
-				qualification.NameNormalized = qualification.Name.ToUpperInvariant();
+				qualification.NameNormalized = qualification.Name.ToUpperInvariant( );
 				await DbContext.Qualification.AddAsync(qualification);
 			}
 			else
 			{
-				qualification = DbContext.Qualification.First(q => q.NameNormalized == model.Name.ToUpper());
+				qualification = DbContext.Qualification.First(q => q.NameNormalized == model.Name.ToUpper( ));
 				qualification.IsDeleted = false;
 			}
-			await DbContext.SaveChangesAsync();
+			await DbContext.SaveChangesAsync( );
 		}
 
 		public IEnumerable<QualificationConciseViewModel> All()
@@ -47,13 +47,13 @@ namespace MedHelper.Services.Admin
 		{
 			Qualification foundItem = await DbContext.Qualification.FindAsync(id);
 			if (foundItem is Qualification qualification
-				&& qualification.NameNormalized != Qualifications.PERSONNEL.ToUpper())
+				&& qualification.NameNormalized != Qualifications.PERSONNEL.ToUpper( ))
 			{
 				qualification.IsDeleted = true;
-				await DbContext.SaveChangesAsync();
+				await DbContext.SaveChangesAsync( );
 			}
 		}
-		private bool Exists(string name) => DbContext.Qualification.Any(x => x.NameNormalized == name.ToUpper());
+		private bool Exists(string name) => DbContext.Qualification.Any(x => x.NameNormalized == name.ToUpper( ));
 		public async Task<IEnumerable<QualificationPersonnelViewModel>> GetAllPersonnelAsync(string id)
 		{
 			var model = new List<QualificationPersonnelViewModel>();
@@ -77,12 +77,12 @@ namespace MedHelper.Services.Admin
 			DbContext.UserRoles.RemoveRange(DbContext.UserRoles
 				.Where(ur => ur.RoleId == foundRoleDoctor.Id || ur.RoleId == foundRolePersonnel.Id)
 				.Where(ur => ur.UserId == foundUser.Id)
-				.ToList());
+				.ToList( ));
 
 			foundUser.QualificationId = null;
 			foundUser.PositionedSince = null;
 
-			await DbContext.SaveChangesAsync();
+			await DbContext.SaveChangesAsync( );
 		}
 	}
 }

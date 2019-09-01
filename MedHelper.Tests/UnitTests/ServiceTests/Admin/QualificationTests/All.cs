@@ -20,14 +20,14 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.QualificationTests
 				new Qualification(NAME_QUALIICATION),
 				new Qualification(NAME_QUALIICATION),
 				new Qualification(NAME_QUALIICATION));
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			var service = new AdminQualificationService(dbContext, userManager, roleManager, signInManager);
 
 			IEnumerable<QualificationConciseViewModel> results = service.All();
 
 			Assert.IsNotNull(results);
-			Assert.AreEqual(3, results.ToList().Count);
+			Assert.AreEqual(3, results.ToList( ).Count);
 		}
 
 		[TestMethod]
@@ -38,7 +38,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.QualificationTests
 			IEnumerable<QualificationConciseViewModel> results = service.All();
 
 			Assert.IsNotNull(results);
-			Assert.AreEqual(0, results.ToList().Count);
+			Assert.AreEqual(0, results.ToList( ).Count);
 		}
 	}
 }

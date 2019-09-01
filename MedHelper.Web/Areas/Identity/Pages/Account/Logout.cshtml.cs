@@ -27,10 +27,10 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account
 
 		public async Task<IActionResult> OnPost(string returnUrl = null)
 		{
-			if (!User.Claims.Any()) return RedirectToPage("/Index");
-			await userService.SignInManager.SignOutAsync();
+			if (!User.Claims.Any( )) return RedirectToPage("/Index");
+			await userService.SignInManager.SignOutAsync( );
 			logger.LogInformation(Messages.LOGGER_INFO_USER_LOGGED_OUT);
-			return returnUrl != null ? LocalRedirect(returnUrl) : (IActionResult)Page();
+			return returnUrl != null ? LocalRedirect(returnUrl) : (IActionResult) Page( );
 		}
 	}
 }

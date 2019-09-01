@@ -29,7 +29,7 @@ namespace MedHelper.Services.Users
 			DateTime end = start.AddMinutes(15d);
 			var visit = new Visit(model.PatientId, start, end, DbContext.VisitStatuses.First(vs => vs.Status == VisitStatuses.PENDING).Id);
 			foundDoctor.TimeTable.Visits.Add(visit);
-			await DbContext.SaveChangesAsync();
+			await DbContext.SaveChangesAsync( );
 			return true;
 		}
 		public IEnumerable<DateTime> GetAvaliableTime(string DoctorId, DateTime date)
@@ -44,17 +44,17 @@ namespace MedHelper.Services.Users
 			DateTime endTime = foundUser.WorktimeEnd ?? new DateTime(0, 0, 0, 18, 0, 0);
 			do
 			{
-				if (currentTime.ActualTime() < foundUser.BreakStart.ActualTime() || currentTime.ActualTime() > foundUser.BreakEnd.ActualTime())
+				if (currentTime.ActualTime( ) < foundUser.BreakStart.ActualTime( ) || currentTime.ActualTime( ) > foundUser.BreakEnd.ActualTime( ))
 					times.Add(currentTime);
 
 				currentTime = currentTime.AddMinutes(20d);
 			} while (endTime.Hour != currentTime.Hour);
 
-			foundUser.TimeTable.Visits.Where(v => v.StartTime.DayOfYear == date.DayOfYear && v.Status.Status == VisitStatuses.PENDING).ToList().ForEach(v =>
-			{
-				DateTime time = times.FirstOrDefault(t => v.StartTime.Hour == t.Hour && v.StartTime.Minute == t.Minute);
-				if (time is DateTime found) times.Remove(found);
-			});
+			foundUser.TimeTable.Visits.Where(v => v.StartTime.DayOfYear == date.DayOfYear && v.Status.Status == VisitStatuses.PENDING).ToList( ).ForEach(v =>
+			 {
+				 DateTime time = times.FirstOrDefault(t => v.StartTime.Hour == t.Hour && v.StartTime.Minute == t.Minute);
+				 if (time is DateTime found) times.Remove(found);
+			 });
 
 			return times;
 		}
@@ -71,7 +71,7 @@ namespace MedHelper.Services.Users
 		public async Task RemoveAppointmentAsync(string id)
 		{
 			DbContext.Visits.Find(id).StatusId = DbContext.VisitStatuses.First(vs => vs.Status == VisitStatuses.CANCELED).Id;
-			await DbContext.SaveChangesAsync();
+			await DbContext.SaveChangesAsync( );
 		}
 	}
 }

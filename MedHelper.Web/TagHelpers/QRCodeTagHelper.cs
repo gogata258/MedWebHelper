@@ -28,7 +28,7 @@ namespace MedHelper.Web.TagHelpers
 			// creating a bitmap from the raw pixel data; if only black and white colors are used it makes no difference    
 			// that the pixel data ist BGRA oriented and the bitmap is initialized with RGB    
 			using (var bitmap = new System.Drawing.Bitmap(pixelData.Width, pixelData.Height, System.Drawing.Imaging.PixelFormat.Format32bppRgb))
-			using (var ms = new MemoryStream())
+			using (var ms = new MemoryStream( ))
 			{
 				BitmapData bitmapData = bitmap.LockBits(new System.Drawing.Rectangle(0, 0, pixelData.Width, pixelData.Height), ImageLockMode.WriteOnly, PixelFormat.Format32bppRgb);
 				try
@@ -43,11 +43,11 @@ namespace MedHelper.Web.TagHelpers
 				// save to stream as PNG    
 				bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
 				output.TagName = "img";
-				output.Attributes.Clear();
+				output.Attributes.Clear( );
 				output.Attributes.Add("width", QR_DIMENTION);
 				output.Attributes.Add("height", QR_DIMENTION);
 				output.Attributes.Add("alt", QrUrl);
-				output.Attributes.Add("src", string.Format("data:image/png;base64,{0}", Convert.ToBase64String(ms.ToArray())));
+				output.Attributes.Add("src", string.Format("data:image/png;base64,{0}", Convert.ToBase64String(ms.ToArray( ))));
 			}
 		}
 	}

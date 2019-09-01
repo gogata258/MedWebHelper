@@ -31,17 +31,17 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.FacilityTests
 			{
 				IsDeleted = false,
 				NameNormalized = FACILITY_NAME,
-				Operators = new List<User>(),
+				Operators = new List<User>( ),
 				Id = facilityId
 			});
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			await dbContext.Users.AddAsync(new User("TestName", "TestUserName", "test@mail.com", DateTime.Now)
 			{
 				Id = userId,
 				FacilityId = facilityId
 			});
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			await service.RemoveFromPersonnelAsync(userId);
 
@@ -54,7 +54,6 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.FacilityTests
 		public async Task RemoveFromPersonnel_ValidUserWithNoFacility_FacilityIdIsNullAsync()
 		{
 			string userId = Guid.NewGuid().ToString();
-			string facilityId = Guid.NewGuid().ToString();
 
 			var service = new AdminFacilityService(dbContext, userManager, roleManager, signInManager,
 				new Mock<IServerNewsService>().Object);
@@ -63,7 +62,7 @@ namespace MedHelper.Tests.UnitTests.ServiceTests.Admin.FacilityTests
 			{
 				Id = userId,
 			});
-			await dbContext.SaveChangesAsync();
+			await dbContext.SaveChangesAsync( );
 
 			await service.RemoveFromPersonnelAsync(userId);
 

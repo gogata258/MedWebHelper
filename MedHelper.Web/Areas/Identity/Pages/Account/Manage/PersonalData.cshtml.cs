@@ -13,6 +13,6 @@ namespace MedHelper.Web.Areas.Identity.Pages.Account.Manage
 
 		public async Task<IActionResult> OnGet() => await userService.UserManager.GetUserAsync(User) is null
 				? NotFound(Messages.NOTFOUND_USER_ID(userService.UserManager.GetUserId(User)))
-				: (IActionResult)Page();
+				: (IActionResult) Page( );
 	}
 }

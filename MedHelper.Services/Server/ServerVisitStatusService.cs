@@ -19,7 +19,7 @@ namespace MedHelper.Services.Server
 			if (!Exists(status))
 			{
 				await DbContext.VisitStatuses.AddAsync(new VisitStatus(status));
-				await DbContext.SaveChangesAsync();
+				await DbContext.SaveChangesAsync( );
 			}
 		}
 		private bool Exists(string status) => DbContext.VisitStatuses.Any(vs => vs.Status == status);

@@ -30,7 +30,7 @@
 
 			if (!await userService.UserManager.GetTwoFactorEnabledAsync(user)) throw new InvalidOperationException(Messages.EXCEPTION_2FA_NOTENABLED(await userService.UserManager.GetUserIdAsync(user)));
 
-			return Page();
+			return Page( );
 		}
 
 		public async Task<IActionResult> OnPostAsync()
