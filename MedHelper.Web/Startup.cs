@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +17,6 @@ namespace MedHelper.Web
 	using Services.Doctor.Interfaces;
 	using Services.Identity;
 	using Services.Identity.Interfaces;
-	using Services.Identity.SendGrid;
 	using Services.Personnel;
 	using Services.Personnel.Interfaces;
 	using Services.Server;
@@ -63,7 +61,8 @@ namespace MedHelper.Web
 			});
 			services.Configure<RouteOptions>(o => o.LowercaseUrls = true);
 			RegisterGlobalServices(services);
-			services.AddMvc( ).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+			services.AddMvc(config => config.EnableEndpointRouting = false )
+				.SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 		}
 
 		private void RegisterGlobalServices(IServiceCollection services)
@@ -86,23 +85,13 @@ namespace MedHelper.Web
 			services.AddTransient<IDoctorExamService, DoctorExamService>( );
 			services.AddTransient<IDoctorFacilityService, DoctorFacilityService>( );
 			services.AddTransient<IPersonnelExamService, PersonnelExamService>( );
-			services.AddSingleton<IEmailSender, SendGridService>( );
-			services.Configure<SendGridOptions>(Configuration.GetSection("Services:SendGrid"));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		public void Configure(IApplicationBuilder app)
 		{
-			if (env.IsDevelopment( ))
-			{
-				app.UseDeveloperExceptionPage( );
-			}
-			else
-			{
-				app.UseExceptionHandler("/Error");
-				app.UseHsts( );
-			}
-
+			app.UseExceptionHandler("/Error");
+			app.UseHsts();
 			app.UseHttpsRedirection( );
 			app.UseStaticFiles( );
 			app.UseCookiePolicy( );

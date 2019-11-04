@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+
 namespace MedHelper.Common.Attributes.Validation
 {
 	using Common.Constants;
-	[AttributeUsage(AttributeTargets.Property)]
+
+    [AttributeUsage(AttributeTargets.Property)]
 	public sealed class PreventPastDates : ValidationAttribute
 	{
 		protected override ValidationResult IsValid(object value, ValidationContext validationContext)
